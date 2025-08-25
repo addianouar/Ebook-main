@@ -3,31 +3,26 @@ import { Cake, Play, Pause } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import pattern from "@/assets/pattern.jpg";
 
-// Import recipe images
-import DSC01484 from "@/assets/asssets/DSC01484.png";
-import DSC01480 from "@/assets/asssets/DSC01480.png";
-import DSC01472 from "@/assets/asssets/DSC01472.png";
-import DSC01150 from "@/assets/asssets/DSC01150.png";
-import DSC01035 from "@/assets/asssets/DSC01035.png";
-import DSC01034 from "@/assets/asssets/DSC01034.png";
-import DSC01022 from "@/assets/asssets/DSC01022.png";
-import DSC01607 from "@/assets/asssets/DSC01607.png";
-import DSC01603 from "@/assets/asssets/DSC01603.png";
-import DSC01595 from "@/assets/asssets/DSC01595.png";
-import DSC01577 from "@/assets/asssets/DSC01577.png";
-import DSC01573 from "@/assets/asssets/DSC01573.png";
-import DSC01568 from "@/assets/asssets/DSC01568.png";
-import DSC01565 from "@/assets/asssets/DSC01565.png";
-import DSC01560 from "@/assets/asssets/DSC01560.png";
-import DSC01494 from "@/assets/asssets/DSC01494.png";
-import DSC01498 from "@/assets/asssets/DSC01498.png";
-import DSC01545 from "@/assets/asssets/DSC01545.png";
-
+// Recipe images in public folder
 const recipeImages = [
-  DSC01484, DSC01480, DSC01472, DSC01150, DSC01035,
-  DSC01034, DSC01022, DSC01607, DSC01603, DSC01595,
-  DSC01577, DSC01573, DSC01568, DSC01565, DSC01560,
-  DSC01494, DSC01498, DSC01545
+  "/images/DSC01484.png",
+  "/images/DSC01480.png",
+  "/images/DSC01472.png",
+  "/images/DSC01150.png",
+  "/images/DSC01035.png",
+  "/images/DSC01034.png",
+  "/images/DSC01022.png",
+  "/images/DSC01607.png",
+  "/images/DSC01603.png",
+  "/images/DSC01595.png",
+  "/images/DSC01577.png",
+  "/images/DSC01573.png",
+  "/images/DSC01568.png",
+  "/images/DSC01565.png",
+  "/images/DSC01560.png",
+  "/images/DSC01494.png",
+  "/images/DSC01498.png",
+  "/images/DSC01545.png"
 ];
 
 const recipes = [
