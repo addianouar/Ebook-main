@@ -1,0 +1,153 @@
+/* =======================
+   Luxury Bakery Landing
+   ======================= */
+
+/* Import luxury serif + modern sans fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-main: #651C32;       /* Deep Burgundy */
+  --brand-accent: #F5DADF;     /* Soft Pastel Pink */
+  --brand-bg: #F2EFE8;         /* Warm Neutral / Cream */
+  --brand-dark: #1D3C34;       /* Dark Green Accent */
+  --brand-gold: #C5912C;       /* Luxury Gold */
+  --brand-red: #A6192E;        /* Dark Red Accent */
+  --brand-light: #788E75;      /* Soft Green / Secondary */
+  --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Global */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--brand-bg);
+  color: #222;
+  overflow-x: hidden;
+}
+
+/* Headings luxury serif */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.5px;
+  color: var(--brand-main);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(to bottom right, var(--brand-main), var(--brand-gold));
+  color: white;
+  padding: clamp(4rem, 10vw, 8rem) 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  animation: fadeInDown 1.2s ease-in-out;
+  color: var(--brand-gold);
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-top: 1rem;
+  opacity: 0.9;
+  color: #F2EFE8;
+}
+
+/* Buttons */
+.btn {
+  background: var(--brand-gold);
+  color: var(--brand-main);
+  padding: 0.6rem 1.4rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, var(--brand-gold), var(--brand-main));
+  box-shadow: 0 0 15px rgba(197, 145, 44, 0.5);
+}
+
+/* Sections alternate */
+.section-light {
+  background: var(--brand-bg);
+  padding: clamp(3rem, 8vw, 5rem) 2rem;
+}
+
+.section-dark {
+  background: var(--brand-main);
+  color: white;
+  padding: clamp(3rem, 8vw, 5rem) 2rem;
+}
+
+.section-pink {
+  background: var(--brand-accent);
+  padding: clamp(3rem, 8vw, 5rem) 2rem;
+}
+
+/* Cards */
+.card {
+  background: var(--brand-bg);
+  border: 2px solid var(--brand-gold);
+  border-radius: 1.5rem;
+  box-shadow: var(--card-shadow);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Footer */
+.footer {
+  background: var(--brand-main);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Luxury accent shapes */
+.shape-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  position: absolute;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.shape-square {
+  width: 60px;
+  height: 60px;
+  background: var(--brand-accent);
+  position: absolute;
+  z-index: 0;
+  opacity: 0.1;
+}
+
+/* Responsive utilities for sliders / cards */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .card { padding: 1.5rem; }
+}
