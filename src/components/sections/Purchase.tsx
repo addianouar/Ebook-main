@@ -145,24 +145,24 @@ export const Purchase = () => {
               </div>
 
               {/* Payment Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 mt-4">
+              <div className="flex flex-col lg:flex-row gap-4 mt-6">
                 <LuxuryButton
                   variant="primary"
                   size="lg"
-                  className="flex-1 w-full bg-[#C5912C] text-white hover:bg-[#B47B24] hover:text-white transition-all shadow-lg hover:scale-[1.02]"
+                  className="w-full rounded-2xl py-4 text-lg font-semibold bg-[#C5912C] text-white hover:bg-[#B47B24] hover:scale-105 transition-all shadow-xl"
                   onClick={handlePayPalPayment}
                 >
-                  <CreditCard className="mr-2" size={18} />
+                  <CreditCard className="mr-2" size={20} />
                   Payer avec PayPal - 76 EUR
                 </LuxuryButton>
 
                 <LuxuryButton
                   variant="primary"
                   size="lg"
-                  className="flex-1 w-full bg-[#25D366] text-white hover:bg-[#1DA851] hover:text-white transition-all shadow-lg hover:scale-[1.02]"
+                  className="w-full rounded-2xl py-4 text-lg font-semibold bg-[#25D366] text-white hover:bg-[#1DA851] hover:scale-105 transition-all shadow-xl"
                   onClick={handleWhatsAppContact}
                 >
-                  <MessageCircle className="mr-2" size={18} />
+                  <MessageCircle className="mr-2" size={20} />
                   Paiement par Virement (WhatsApp)
                 </LuxuryButton>
               </div>

@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 import { LuxuryButton } from "@/components/ui/luxury-button"
-import { Mail, MessageCircle, Instagram, Facebook, Twitter } from "lucide-react"
+import { Mail, MessageCircle, Instagram } from "lucide-react"
 import pattern from "@/assets/pattern.jpg"
 
 export const Footer = () => {
@@ -10,7 +10,7 @@ export const Footer = () => {
     const message = encodeURIComponent(
       "Bonjour ! Je souhaiterais obtenir plus d'informations sur vos ebooks de pâtisserie."
     )
-    window.open(`https://wa.me/YOUR_PHONE_NUMBER?text=${message}`, "_blank")
+    window.open(`https://wa.me/212600370277?text=${message}`, "_blank")
   }
 
   const handleEmailContact = () => {
@@ -19,14 +19,16 @@ export const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden text-center">
-      {/* Red background */}
+      {/* Background */}
       <div className="absolute inset-0 bg-[#651C32]"></div>
+
       {/* Pattern overlay */}
       <img
         src={pattern}
         alt="Pattern"
         className="absolute inset-0 w-full h-full object-cover opacity-10 animate-luxury-float"
       />
+
       {/* Vignette overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20"></div>
 
@@ -36,17 +38,17 @@ export const Footer = () => {
           <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white animate-bounce">
             Restons en <span className="text-[#C5912C]">Contact</span>
           </h3>
-          <p className="text-white/80 font-inter leading-relaxed text-sm sm:text-base max-w-xl mx-auto animate-fade-in-up">
+          <p className="text-white/80 font-inter leading-relaxed text-sm sm:text-base max-w-xl mx-auto">
             Vous avez des questions sur nos ebooks ou souhaitez découvrir 
             les prochains volumes de la collection ? N'hésitez pas à nous contacter.
           </p>
 
-          {/* Centered Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-4 animate-pulse">
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-4">
             <LuxuryButton
               variant="primary"
               onClick={handleWhatsAppContact}
-              className="flex-1 max-w-xs bg-[#25D366] hover:bg-[#1DA851] text-white transition-all"
+              className="w-full sm:w-auto max-w-xs bg-[#25D366] hover:bg-[#1DA851] text-white transition-all"
             >
               <MessageCircle className="mr-2" size={18} />
               WhatsApp
@@ -54,7 +56,7 @@ export const Footer = () => {
             <LuxuryButton
               variant="outline"
               onClick={handleEmailContact}
-              className="flex-1 max-w-xs border-white text-white hover:bg-white hover:text-[#651C32] transition-all"
+              className="w-full sm:w-auto max-w-xs border-white text-white hover:bg-white hover:text-[#651C32] transition-all"
             >
               <Mail className="mr-2" size={18} />
               Email
@@ -64,27 +66,24 @@ export const Footer = () => {
 
         {/* Social Links & Copyright */}
         <div className="border-t border-white/20 pt-6 sm:pt-8 lg:pt-10 mt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+          <div className="flex flex-col items-center gap-6">
             {/* Social Links */}
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-              <span className="text-white/70 font-inter text-xs sm:text-sm">
+            <div className="flex flex-col items-center gap-3">
+              <span className="text-white/70 font-inter text-sm">
                 Suivez-nous :
               </span>
-              <div className="flex gap-2 sm:gap-3 mt-1 sm:mt-0">
-                <button className="bg-white/10 border border-white/30 p-2 rounded-lg text-white hover:bg-white hover:text-[#651C32] transition-all duration-300 animate-bounce">
-                  <Instagram size={16} />
-                </button>
-                <button className="bg-white/10 border border-white/30 p-2 rounded-lg text-white hover:bg-white hover:text-[#651C32] transition-all duration-300 animate-bounce">
-                  <Facebook size={16} />
-                </button>
-                <button className="bg-white/10 border border-white/30 p-2 rounded-lg text-white hover:bg-white hover:text-[#651C32] transition-all duration-300 animate-bounce">
-                  <Twitter size={16} />
-                </button>
-              </div>
+              <a
+                href="https://www.instagram.com/saracakeartist/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 border border-white/30 p-3 rounded-lg text-white hover:bg-white hover:text-[#651C32] transition-all duration-300"
+              >
+                <Instagram size={20} />
+              </a>
             </div>
 
             {/* Copyright */}
-            <div className="text-center sm:text-right mt-4 sm:mt-0">
+            <div className="text-center">
               <p className="text-white/70 font-inter text-xs sm:text-sm">
                 © {currentYear} Sara Alöwe. Tous droits réservés.
               </p>

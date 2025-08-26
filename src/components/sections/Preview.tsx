@@ -26,16 +26,96 @@ const recipeImages = [
 ];
 
 const recipes = [
-  { title: "Recette 1 – Pistache & Fruits Rouges", points: ["Base : Molly Cake à la pistache", "Insert : Gelée fruits rouges", "Crème d’assemblage : Crème montée à la pistache", "Crème de couverture : Ganache montée pistache structurée"] },
-  { title: "Recette 2 – Brownie Praliné Croustillant", points: ["Base : Brownie fondant au chocolat noir", "Insert : Croustillant praliné gianduja", "Crème d’assemblage : Ganache montée praliné-noisette", "Ganache de couverture : Ganache praliné “dure” chocolat noir ou lait"] },
-  { title: "Recette 3 – Framboise & Rose", points: ["Base : Cake vanille souple", "Insert : Compotée de framboises fraîches", "Crème d’assemblage : Crème montée mascarpone & rose", "Crème de couverture : SMBC à la rose"] },
-  { title: "Recette 4 – Chocolat Noir & Cerises", points: ["Base : Cake chocolat noir intense", "Insert : Cerise amarena texturé", "Crème d’assemblage : Crémeux cacao", "Crème de couverture : Ganache montée chocolat noir structurée"] },
-  { title: "Recette 5 – Passion, Mangue & Noix de Coco", points: ["Base : Cake exotique à la mangue", "Insert : Mangue-passion gélifié", "Crème d’assemblage : Namelaka coco", "Crème de couverture : Ganache montée coco"] },
-  { title: "Recette 6 – Citron & Basilic", points: ["Base : Cake citron léger", "Insert : Gelée citron-basilic", "Crème d’assemblage : Crème montée au citron", "Crème de couverture : Icing citronné"] },
-  { title: "Recette 7 – Caramel & Noisette", points: ["Base : Cake caramel", "Insert : Praliné noisette", "Crème d’assemblage : Ganache caramel", "Crème de couverture : Ganache noisette"] },
-  { title: "Recette 8 – Mangue & Passion", points: ["Base : Cake mangue", "Insert : Passion gélifié", "Crème d’assemblage : Namelaka passion", "Crème de couverture : Ganache mangue"] },
-  { title: "Recette 9 – Chocolat Blanc & Framboise", points: ["Base : Cake chocolat blanc", "Insert : Compotée framboise", "Crème d’assemblage : Crème mascarpone", "Crème de couverture : SMBC chocolat blanc"] },
-  { title: "Recette 10 – Vanille & Caramel", points: ["Base : Cake vanille", "Insert : Caramel tendre", "Crème d’assemblage : Ganache vanille", "Crème de couverture : Ganache caramel"] }
+  { 
+    title: "Recette 1 – Pistache & Fruits Rouges", 
+    points: [
+      "✓ Base : Molly Cake à la pistache",
+      "✓ Insert : Gelée fruits rouges",
+      "✓ Crème d’assemblage : Crème montée à la pistache",
+      "✓ Crème de couverture : Ganache montée pistache structurée"
+    ] 
+  },
+  { 
+    title: "Recette 2 – Brownie Praliné Croustillant", 
+    points: [
+      "✓ Base : Brownie fondant au chocolat noir",
+      "✓ Insert : Croustillant praliné gianduja",
+      "✓ Crème d’assemblage : Ganache montée praliné-noisette",
+      "✓ Ganache de couverture : Ganache praliné “dure” chocolat noir ou lait"
+    ] 
+  },
+  { 
+    title: "Recette 3 – Framboise & Rose", 
+    points: [
+      "✓ Base : Cake vanille souple",
+      "✓ Insert : Compotée de framboises fraîches",
+      "✓ Crème d’assemblage : Crème montée mascarpone & rose",
+      "✓ Crème de couverture : SMBC (Swiss Meringue Buttercream) à la rose"
+    ] 
+  },
+  { 
+    title: "Recette 4 – Chocolat Noir & Cerises", 
+    points: [
+      "✓ Base : Cake chocolat noir intense",
+      "✓ Insert : Cerise amarena texturé",
+      "✓ Crème d’assemblage : Crémeux cacao",
+      "✓ Crème de couverture : Ganache montée chocolat noir structurée"
+    ] 
+  },
+  { 
+    title: "Recette 5 – Passion, Mangue & Noix de Coco", 
+    points: [
+      "✓ Base : Cake exotique à la mangue",
+      "✓ Insert : Mangue-passion gélifié",
+      "✓ Crème d’assemblage : Namelaka coco",
+      "✓ Crème de couverture : Ganache montée coco"
+    ] 
+  },
+  { 
+    title: "Recette 6 – Amande, Vanille & Chocolat Blanc", 
+    points: [
+      "✓ Base : Cake moelleux à l’amande",
+      "✓ Insert : Fondant au chocolat blanc (ganache gélifiée)",
+      "✓ Crème d’assemblage : Crème diplomate à la vanille",
+      "✓ Crème de couverture : Ganache structurée chocolat blanc & praliné d’amande"
+    ] 
+  },
+  { 
+    title: "Recette 7 – Caramel Beurre Salé & Noisette", 
+    points: [
+      "✓ Base : Cake noisette & vanille",
+      "✓ Insert : Caramel beurre salé & noisettes caramélisées",
+      "✓ Crème d’assemblage : Namelaka caramel-noisette",
+      "✓ Crème de couverture : Ganache montée chocolat au lait, praliné & gianduja"
+    ] 
+  },
+  { 
+    title: "Recette 8 – Honey Cake Signature aux Épices Douces", 
+    points: [
+      "✓ Base : Pâte à biscuit miel",
+      "✓ Insert : Sirop d’imbibage léger au miel & citron (optionnel)",
+      "✓ Crème d’assemblage : Ganache montée vanille-citron ultra stable"
+    ] 
+  },
+  { 
+    title: "Recette 9 – Croustillant Dulcey & Fleur de Sel", 
+    points: [
+      "✓ Base : Cake au muscovado & chocolat Dulcey",
+      "✓ Insert : Croustillant dulce de leche & fleur de sel",
+      "✓ Crème d’assemblage : Crème montée dulce de leche & mascarpone",
+      "✓ Ganache de couverture : Ganache Dulcey structurée (substitut SMBC)"
+    ] 
+  },
+  { 
+    title: "Recette 10 – Pâte d’Amande, Orange & Chocolat au Lait", 
+    points: [
+      "✓ Base : Cake à la pâte d’amande & zestes d’orange",
+      "✓ Insert 1 : Fondant orange confite & miel",
+      "✓ Insert 2 (bonus) : Crémeux pâte d’amande",
+      "✓ Crème d’assemblage : Chocolat au lait & mascarpone",
+      "✓ Crème de couverture : Ganache structurée chocolat au lait"
+    ] 
+  }
 ];
 
 export const Preview = () => {
@@ -80,6 +160,10 @@ export const Preview = () => {
             <img
               src={recipeImages[currentImage]}
               alt={`Recette ${currentImage + 1}`}
+              loading="lazy"
+              width={800}
+              height={600}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
               className="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-contain transition-transform duration-500"
             />
 
