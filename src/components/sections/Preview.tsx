@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { Cake, Play, Pause } from "lucide-react";
+import { Cake, Play, Pause, ChevronDown } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import pattern from "@/assets/pattern.jpg";
 import { LanguageContext } from "@/Context/languagecontext";
@@ -19,39 +19,25 @@ const recipesData = {
     { title: "Recette 10 – Pâte d’Amande, Orange & Chocolat au Lait", points: ["✓ Base : Cake à la pâte d’amande & zestes d’orange","✓ Insert 1 : Fondant orange confite & miel","✓ Insert 2 (bonus) : Crémeux pâte d’amande","✓ Crème d’assemblage : Chocolat au lait & mascarpone","✓ Crème de couverture : Ganache structurée chocolat au lait"] }
   ],
   ar: [
-    { title: "الوصفة 1 – فستق وفواكه حمراء", points: ["✓ القاعدة: مولّي كيك بالفستق","✓ الحشوة: جيلي الفواكه الحمراء","✓ كريم التجميع: كريم مخفوق بالفستق","✓ غطاء الكيك: غاناش مخفوق بالفستق"] },
-    { title: "الوصفة 2 – براوني بالبرانلي المقرمش", points: ["✓ القاعدة: براوني بالشوكولاتة السوداء","✓ الحشوة: برانلي جياندوجا مقرمش","✓ كريم التجميع: غاناش برانلي-بندق مخفوق","✓ غطاء الكيك: غاناش برانلي صلب بالشوكولاتة"] },
-    { title: "الوصفة 3 – توت العليق والورد", points: ["✓ القاعدة: كيك فانيليا طري","✓ الحشوة: كومبوت توت العليق الطازج","✓ كريم التجميع: كريم ماسكاربوني بالورد","✓ غطاء الكيك: SMBC بالورد"] },
-    { title: "الوصفة 4 – شوكولاتة داكنة وكريز", points: ["✓ القاعدة: كيك بالشوكولاتة الداكنة المكثفة","✓ الحشوة: كرز أمارينا محكم القوام","✓ كريم التجميع: كريمو كاكاو","✓ غطاء الكيك: غاناش مخفوق بالشوكولاتة الداكنة"] },
-    { title: "الوصفة 5 – باشن فروت، مانجو وجوز الهند", points: ["✓ القاعدة: كيك استوائي بالمانجو","✓ الحشوة: مانجو-باشن جيلي","✓ كريم التجميع: ناميليكا بجوز الهند","✓ غطاء الكيك: غاناش مخفوق بجوز الهند"] },
-    { title: "الوصفة 6 – لوز، فانيليا وشوكولاتة بيضاء", points: ["✓ القاعدة: كيك ناعم باللوز","✓ الحشوة: شوكولاتة بيضاء مذابة (غاناش هلامي)","✓ كريم التجميع: كريم دبلوماسي بالفانيليا","✓ غطاء الكيك: غاناش منظم بالشوكولاتة البيضاء وبرانلي اللوز"] },
-    { title: "الوصفة 7 – كراميل بالزبدة المالحة والبندق", points: ["✓ القاعدة: كيك بندق وفانيليا","✓ الحشوة: كراميل بالزبدة المالحة وبندق كاراميل","✓ كريم التجميع: ناميليكا بالكراميل والبندق","✓ غطاء الكيك: غاناش مخفوق بالشوكولاتة بالحليب، برانلي وجياندوجا"] },
-    { title: "الوصفة 8 – هاني كيك بالتوابل", points: ["✓ القاعدة: عجينة بسكويت بالعسل","✓ الحشوة: شراب عسل وخفيف بالليمون (اختياري)","✓ كريم التجميع: غاناش مخفوق فانيليا-ليمون مستقر للغاية"] },
-    { title: "الوصفة 9 – كرسبي دولسيه وملح البحر", points: ["✓ القاعدة: كيك بالمسكوفادو وشوكولاتة دولسيه","✓ الحشوة: كرسبي دولسيه دي ليشي وملح البحر","✓ كريم التجميع: كريم مخفوق دولسيه دي ليشي وماسكاربوني","✓ غطاء الكيك: غاناش دولسيه منظم (بديل SMBC)"] },
-    { title: "الوصفة 10 – عجينة اللوز والبرتقال وشوكولاتة الحليب", points: ["✓ القاعدة: كيك بعجينة اللوز وقشر البرتقال","✓ الحشوة 1: فوندان البرتقال والعسل","✓ الحشوة 2 (اختياري): كريمو عجينة اللوز","✓ كريم التجميع: شوكولاتة الحليب وماسكاربوني","✓ غطاء الكيك: غاناش منظم بالشوكولاتة بالحليب"] }
+    { title: "الوصفة 1: الفستق والفواكه الحمراء", points: ["القاعدة: كيك مولي بالفستق (3 طبقات – قطر 15 سم) ✓","الحشوة: جيلي التوت الأحمر ✓","كريمة التجميع: كريمة مخفوقة بالفستق ✓","كريمة التغطية: غاناش مخفوق فستق ✓"] },
+    { title: "الوصفة 2: براوني براليني مقرمش", points: ["القاعدة: براوني ناعم شوكولاتة داكنة (طبقتان – قطر 15 سم) ✓","الحشوة: طبقة مقرمشة بالجياندويا والبراليني (تصب في قالب قطر 12 سم ارتفاع 1 سم) ✓","كريمة التجميع: غاناش مخفوق بالبراليني والبندق ✓","كريمة التغطية: غاناش براليني \"صلب\" بالشوكولاتة الداكنة أو بالحليب ✓"] },
+    { title: "الوصفة 3: توت العليق وماء الورد", points: ["القاعدة: كيك الفانيليا الطري (قطر 15 سم – 3 طبقات) ✓","الحشوة: كومبوت توت العليق (طازج أو مجمّد) ✓","كريمة التجميع: كريمة مخفوقة بالماسكاربونو وماء الورد ✓","كريمة التغطية: SMBC بماء الورد – قوام قوي ✓"] },
+    { title: "الوصفة 4: الشوكولاتة السوداء والكرز", points: ["القاعدة: كيك شوكولاتة داكنة مكثفة (قطر 15 سم – 3 طبقات) ✓","الحشوة: كرز أمارينا بقوام هلامي (غير مطهو كومبوت) ✓","كريمة التجميع: كريمو الكاكاو (تماسك متوسط) ✓","كريمة التغطية: غاناش مخفوق شوكولاتة داكنة ✓"] },
+    { title: "الوصفة 5: باشن فروت، مانجو وجوز الهند", points: ["القاعدة: كيك استوائي بالمانجو (قطر 15 سم – 3 طبقات) ✓","الحشوة: طبقة هلامية مانجو – باشن فروت ✓","كريمة التجميع: ناميلاكا جوز الهند (قوام ناعم ولامع) ✓","كريمة التغطية: غاناش جوز الهند المخفوق ✓"] },
+    { title: "الوصفة 6: اللوز، الفانيليا، والشوكولاتة البيضاء", points: ["القاعدة: كيك طري لوز (قطر 15 سم – 3 طبقات) ✓","الحشوة: فوندان الشوكولاتة البيضاء (نوع غاناش هلامي) ✓","كريمة التجميع: كريمة دبلوماسية بالفانيليا ✓","كريمة التغطية: غاناش مخفوق الشوكولاتة البيضاء وبراليني اللوز ✓"] },
+    { title: "الوصفة 7: كراميل بالزبدة المالحة والبندق", points: ["القاعدة: كيك الزبدة – زيت، فانيليا وبندق ✓","الحشوة: كريميل بالزبدة المالحة والبندق المكرمل ✓","كريمة التجميع: ناميلاكا كريميل – بندق ✓","كريمة التغطية: غاناش مخفوق بالشوكولاتة بالحليب، براليني وجياندويا ✓"] },
+    { title: "الوصفة 8: كيك العسل المميز بالتوابل الناعمة", points: ["القاعدة: عجينة البسكوت بالعسل (6 إلى 8 طبقات رقيقة) ✓","الحشوة: شراب خفيف بالعسل والليمون (اختياري) ✓","كريمة التجميع: غاناش مخفوق بالفانيليا والليمون ✓","كريمة التغطية: غاناش مخفوق بالفانيليا والليمون ✓"] },
+    { title: "الوصفة 9: كروستيان دولسي بشوائب ملح البحر", points: ["القاعدة: كيك بالموسكوفادو وشوكولاتة دولسي ✓","الحشوة: كروستيان (مقرمش) دولتشي لي تشي وملح البحر ✓","كريمة التجميع: كريمة مخفوقة دولتشي لي تشي وماسكاربوني ✓","كريمة التغطية: غاناش دولسي مهيكل ✓"] },
+    { title: "الوصفة 10: معجون اللوز، البرتقال، والشوكولاتة بالحليب", points: ["القاعدة: كيك بمعجون اللوز وبشر البرتقال ✓","الحشوة: فوندان البرتقال المعسل والعسل ✓","كريمة التجميع: بالشوكولاتة بالحليب والماسكاربونو (بدون جيلاتين) ✓","كريمة التغطية: بالشوكولاتة بالحليب ✓"] }
   ]
 };
 
 // Recipe images
 const recipeImages = [
-  "/images/DSC0102.jpeg",
-  "/images/DSC0103.jpeg",
-  "/images/DSC01033.jpeg",
-  "/images/DSC0115.jpeg",
-  "/images/DSC0147.jpeg",
-  "/images/DSC0148.jpeg",
-  "/images/DSC01488.jpeg",
-  "/images/DSC0149.jpeg",
-  "/images/DSC01499.jpeg",
-  "/images/DSC0154.jpeg",
-  "/images/DSC0156.jpeg",
-  "/images/DSC01566.jpeg",
-  "/images/DSC01567.jpeg",
-  "/images/DSC0157.jpeg",
-  "/images/DSC01578.jpeg",
-  "/images/DSC0159.jpeg",
-  "/images/DSC0160.jpeg",
-  "/images/DSC01601.jpeg",
+  "/images/DSC0102.jpeg","/images/DSC0103.jpeg","/images/DSC01033.jpeg","/images/DSC0115.jpeg","/images/DSC0147.jpeg",
+  "/images/DSC0148.jpeg","/images/DSC01488.jpeg","/images/DSC0149.jpeg","/images/DSC01499.jpeg","/images/DSC0154.jpeg",
+  "/images/DSC0156.jpeg","/images/DSC01566.jpeg","/images/DSC01567.jpeg","/images/DSC0157.jpeg","/images/DSC01578.jpeg",
+  "/images/DSC0159.jpeg","/images/DSC0160.jpeg","/images/DSC01601.jpeg"
 ];
 
 export const Preview = () => {
@@ -64,31 +50,13 @@ export const Preview = () => {
   const prevImage = () => setCurrentImage((prev) => (prev - 1 + recipeImages.length) % recipeImages.length);
   const togglePause = () => setIsPaused(!isPaused);
 
+  // Auto-play images
   useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(nextImage, 5000);
       return () => clearInterval(interval);
     }
   }, [isPaused]);
-
-  // Scroll animation
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const handleScroll = () => {
-      const children = Array.from(el.children) as HTMLElement[];
-      children.forEach((child) => {
-        const rect = child.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const progress = Math.min(Math.max(0, 1 - rect.top / windowHeight), 1);
-        child.style.opacity = `${progress}`;
-        child.style.transform = `scale(${0.95 + 0.05 * progress})`;
-      });
-    };
-    handleScroll();
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [language]);
 
   return (
     <section className="py-16 lg:py-20 relative overflow-hidden bg-[#651C32]">
@@ -109,46 +77,90 @@ export const Preview = () => {
             <span className="text-white">{language === "fr" ? "Exclusif" : "حصري"}</span>
           </h2>
           <p className="text-white/90 text-base sm:text-lg font-inter leading-relaxed max-w-3xl mx-auto">
-            {language === "fr" ? "Découvrez un portfolio varié de recettes prêtes à toutes les occasions." : "اكتشف مجموعة متنوعة من الوصفات الجاهزة لجميع المناسبات."}
+            {language === "fr"
+              ? "Découvrez un portfolio varié de recettes prêtes à toutes les occasions."
+              : "اكتشف مجموعة متنوعة من الوصفات الجاهزة لجميع المناسبات."}
           </p>
         </div>
 
         {/* Card */}
-        <Card className={`bg-[#F2EFE8] shadow-xl overflow-visible rounded-2xl relative p-4 sm:p-6 flex flex-col lg:flex-row gap-6`}>
+        <Card className="bg-[#F2EFE8] shadow-xl overflow-visible rounded-2xl relative p-4 sm:p-6 flex flex-col lg:flex-row gap-6">
+          
           {/* Image slider */}
           <div className="w-full lg:w-1/2 relative flex-shrink-0 rounded-xl overflow-hidden border-2 border-[#C5912C]/30 shadow-lg">
-            <img
-              src={recipeImages[currentImage]}
-              alt={`Recette ${currentImage + 1}`}
-              loading="lazy"
-              className="w-full h-64 sm:h-72 md:h-80 lg:h-96 object-contain transition-transform duration-500"
-            />
+            <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden">
+              <img
+                key={currentImage}
+                src={recipeImages[currentImage]}
+                alt={`Recette ${currentImage + 1}`}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out opacity-100 select-none pointer-events-none"
+                onContextMenu={(e) => e.preventDefault()} // disable right-click
+                onDragStart={(e) => e.preventDefault()}   // disable drag
+              />
+            </div>
 
-            <button onClick={prevImage} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#C5912C] text-[#651C32] rounded-full flex items-center justify-center shadow-lg z-20">
+            {/* Arrows */}
+            <button
+              onClick={prevImage}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#C5912C] text-[#651C32] rounded-full flex items-center justify-center shadow-lg z-20"
+            >
               <Cake size={16} />
             </button>
-            <button onClick={nextImage} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#C5912C] text-[#651C32] rounded-full flex items-center justify-center shadow-lg z-20">
+            <button
+              onClick={nextImage}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#C5912C] text-[#651C32] rounded-full flex items-center justify-center shadow-lg z-20"
+            >
               <Cake size={16} />
             </button>
-            <button onClick={togglePause} className="absolute top-2 sm:top-4 right-2 sm:right-4 w-10 h-10 bg-[#C5912C] text-[#651C32] rounded-full flex items-center justify-center shadow-lg z-20">
+            <button
+              onClick={togglePause}
+              className="absolute top-2 sm:top-4 right-2 sm:right-4 w-10 h-10 bg-[#C5912C] text-[#651C32] rounded-full flex items-center justify-center shadow-lg z-20"
+            >
               {isPaused ? <Play size={14} /> : <Pause size={14} />}
             </button>
 
+            {/* Dots */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+              {recipeImages.slice(0, 5).map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-2 h-2 rounded-full transition-all ${i === currentImage % 5 ? "bg-[#C5912C]" : "bg-white/50"}`}
+                />
+              ))}
+            </div>
+
+            {/* Badge */}
             <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-[#C5912C] text-[#F2EFE8] font-semibold px-3 py-1 rounded-full shadow-lg animate-bounce text-sm z-20">
               40 {language === "fr" ? "recettes en total" : "وصفة في المجموع"}
             </div>
           </div>
 
           {/* Scrollable recipe list */}
-          <div ref={scrollRef} className="w-full lg:w-1/2 flex flex-col gap-3 max-h-96 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#C5912C]/60 scrollbar-track-[#C5912C]/10">
-            {recipesData[language].map((recipe, index) => (
-              <div key={index} className="p-3 sm:p-4 rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#C5912C]/10">
-                <h3 className="font-playfair text-sm sm:text-base font-bold text-[#651C32]">{recipe.title}</h3>
-                <ul className="list-disc list-inside text-[#651C32] text-xs sm:text-sm mt-1 sm:mt-2">
-                  {recipe.points.map((point, i) => <li key={i}>{point}</li>)}
-                </ul>
-              </div>
-            ))}
+          <div className="relative w-full lg:w-1/2">
+            <div
+              ref={scrollRef}
+              className="flex flex-col gap-3 max-h-96 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#C5912C]/60 scrollbar-track-[#C5912C]/10"
+            >
+              {recipesData[language].map((recipe, index) => (
+                <div
+                  key={index}
+                  className="p-3 sm:p-4 rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#C5912C]/10"
+                >
+                  <h3 className="font-playfair text-sm sm:text-base font-bold text-[#651C32]">{recipe.title}</h3>
+                  <ul className="list-disc list-inside text-[#651C32] text-xs sm:text-sm mt-1 sm:mt-2">
+                    {recipe.points.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Scroll hint */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[#C5912C] animate-bounce">
+              <ChevronDown size={20} />
+            </div>
           </div>
         </Card>
       </div>
