@@ -3,7 +3,7 @@ import { Cake, Play, Pause } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import pattern from "@/assets/pattern.jpg";
 
-// ===== Import images =====
+// ===== Import images (resized WebP) =====
 import IMG_0819 from "@/assets/saralowe/resized/IMG_0819.webp";
 import IMG_0832 from "@/assets/saralowe/resized/IMG_0832.webp";
 import IMG_0818 from "@/assets/saralowe/resized/IMG_0818.webp";
@@ -31,6 +31,7 @@ import IMG_0869 from "@/assets/saralowe/resized/IMG_0869.webp";
 import IMG_0874 from "@/assets/saralowe/resized/IMG_0874.webp";
 import IMG_0849 from "@/assets/saralowe/resized/IMG_0849.webp";
 import IMG_0883 from "@/assets/saralowe/resized/IMG_0883.webp";
+
 const recipeImages = [
   IMG_0819, IMG_0832, IMG_0818, IMG_0840, IMG_0825, IMG_0823,
   IMG_0820, IMG_0827, IMG_0833, IMG_0829, IMG_0830, IMG_0845,
@@ -56,6 +57,14 @@ const recipesData = [
 export const Preview = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  // ===== Preload all images =====
+  useEffect(() => {
+    recipeImages.forEach((img) => {
+      const preloaded = new Image();
+      preloaded.src = img;
+    });
+  }, []);
 
   useEffect(() => {
     if (!isPaused) {
@@ -92,13 +101,13 @@ export const Preview = () => {
 
         <Card className="bg-[#F2EFE8] shadow-xl rounded-2xl relative p-4 sm:p-6 flex flex-col lg:flex-row gap-6">
           {/* Image slider */}
-          <div className="relative w-full lg:w-1/2 mx-auto rounded-xl overflow-hidden">
+          <div className="relative w-full lg:w-1/2 mx-auto rounded-xl overflow-hidden aspect-[4/3] bg-[#F2EFE8]">
             <img
               key={currentSlide}
               src={recipeImages[currentSlide]}
               alt={`Recipe ${currentSlide + 1}`}
               loading="lazy"
-              className="w-full h-auto object-cover transition-all duration-700 ease-in-out select-none"
+              className="w-full h-full object-cover transition-all duration-700 ease-in-out select-none"
             />
 
             {/* Controls */}
