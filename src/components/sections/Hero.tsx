@@ -1,171 +1,210 @@
-import { LuxuryButton } from "@/components/ui/luxury-button";
-import { ArrowDown, Globe } from "lucide-react";
-import ebookCover from "@/assets/ebook-cover.jpg";
-import pattern from "@/assets/pattern.jpg";
-import { useLanguage } from "@/Context/languagecontext";
+import React, { useEffect, useRef } from "react";
+import { ArrowDown } from "lucide-react";
+import pattern from "@/assets/pattern.jpg"; // import your pattern
 
 export const Hero = () => {
-  const { language, toggleLanguage } = useLanguage();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationFrameRef = useRef<number>();
 
   const texts = {
-    heroTagline: {
-      fr: "Sara Alöwe - Collection Exclusive",
-      ar: "سارة ألووي - مجموعة حصرية",
-    },
-    heroTitle: {
-      fr: "ALCHEMY IN LAYERS Vol 1",
-      ar: "الخيمياء في الطبقات - المجلد 1",
-    },
-    heroDescription: {
-      fr: "Alchemy in Layers est un voyage au cœur du cake design : 10 recettes inédites, conçues en couches pour garantir à la fois saveur, élégance et stabilité. Chaque base, insert et crème a été pensée pour sublimer vos créations et vous offrir la maîtrise parfaite entre art et technique.",
-      ar: "الخيمياء في الطبقات رحلة فريدة إلى قلب فن تصميم الكعك: 10 وصفات مبتكرة مصممة على طبقات لضمان النكهة والجمال والثبات. تم تصميم كل قاعدة، وحشوة، وكريمة لتزيين إبداعاتك ومنحك السيطرة الكاملة بين الفن والتقنية.",
-    },
-    heroHighlight: {
-      fr: "Des recettes précises et testées par nos élèves",
-      ar: "وصفات دقيقة ومجربة من قبل طلابنا",
-    },
-    heroBullets: {
-      fr: [
-        "Recettes conçues pour le cake design",
-        "Alliance de science et créativité",
-        "10 créations exclusives et innovantes",
-      ],
-      ar: [
-        "وصفات مصممة خصيصًا لفن تصميم الكعك",
-        "مزيج متناغم بين العلم والإبداع",
-        "10 ابتكارات حصرية وفريدة",
-      ],
-    },
-    heroBtnPrimary: {
-      fr: "OBTENIR LE EBOOK",
-      ar: "احصل على الكتاب الإلكتروني",
-    },
-    heroBtnSecondary: {
-      fr: "EN SAVOIR PLUS",
-      ar: "اكتشف المزيد",
-    },
+    heroTagline: "Saralöwe - Exclusive Collection",
+    heroTitle: "CUPCAKE EVOLUTION Vol 1",
+    heroDescription: `Welcome to a world where cupcakes are no longer just little cakes, but edible works of art. 
+    In this book, I invite you to discover 10 unique cupcake creations, each one crafted to surprise, inspire, and delight. 
+    Beyond the classics, these recipes blend unexpected flavors, refined techniques, and a touch of creativity that transforms every bite into an experience.`,
+    heroHighlight: "Precise recipes tested by our students",
+    heroBullets: [
+      "Recipes crafted for cupcake perfection",
+      "Blending science and creativity",
+      "10 exclusive and innovative creations",
+    ],
+    heroBtnPrimary: "GET THE EBOOK",
+    heroBtnSecondary: "LEARN MORE",
   };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById(sectionId);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const direction = language === "ar" ? "rtl" : "ltr";
-  const textAlign = language === "ar" ? "text-right" : "text-left";
-  const flexDirection = language === "ar" ? "lg:flex-row-reverse" : "lg:flex-row";
-  const fontArabic = language === "ar" ? "font-[Tajawal]" : "";
+  // ✨ Animated sparkles and orbs
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speed: number;
+      opacity: number;
+
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speed = Math.random() * 0.3 + 0.2;
+        this.opacity = Math.random() * 0.8 + 0.2;
+      }
+
+      update() {
+        this.y += this.speed;
+        if (this.y > canvas.height) this.reset();
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 215, 150, ${this.opacity})`;
+        ctx.shadowColor = "#FFD700";
+        ctx.shadowBlur = 10;
+        ctx.fill();
+      }
+    }
+
+    class Orb {
+      x: number;
+      y: number;
+      targetX: number;
+      targetY: number;
+      radius: number;
+      color: string;
+      opacity: number;
+
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.targetX = Math.random() * canvas.width;
+        this.targetY = Math.random() * canvas.height;
+        this.radius = Math.random() * 80 + 40;
+        this.color = ["#C5912C", "#F2EFE8", "#ffd580"][Math.floor(Math.random() * 3)];
+        this.opacity = 0.08 + Math.random() * 0.1;
+      }
+
+      update() {
+        this.x += (this.targetX - this.x) * 0.002;
+        this.y += (this.targetY - this.y) * 0.002;
+      }
+
+      draw() {
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        gradient.addColorStop(0, `${this.color}${Math.floor(this.opacity * 255).toString(16)}`);
+        gradient.addColorStop(1, "transparent");
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particles = Array.from({ length: 80 }, () => new Particle());
+    const orbs = Array.from({ length: 4 }, () => new Orb());
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      orbs.forEach((orb) => {
+        orb.update();
+        orb.draw();
+      });
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameRef.current!);
+    };
+  }, []);
 
   return (
     <section
-      className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#651C32] px-4 sm:px-6 lg:px-12 ${fontArabic}`}
       id="hero"
-      dir={direction}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#4A0E1F] via-[#651C32] to-[#2E0D14] text-[#F2EFE8] px-6"
     >
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none">
         <img
           src={pattern}
-          alt="Pattern background"
-          className="w-full h-full object-cover opacity-50 animate-luxury-float shadow-inner"
-          style={{
-            filter: "brightness(0.5) contrast(1.1) drop-shadow(0 0 30px rgba(0,0,0,0.6))",
-            mixBlendMode: "overlay",
-          }}
+          alt="Pattern"
+          className="w-full h-full object-cover opacity-10"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
       </div>
 
-      {/* Content */}
-      <div
-        className={`relative z-10 mt-20 flex flex-col items-center lg:items-start gap-8 lg:gap-12 w-full max-w-7xl ${flexDirection}`}
-      >
-        {/* Text */}
-        <div className={`flex-1 space-y-4 sm:space-y-6 animate-fade-in-up ${textAlign}`}>
-          <p className="text-[#C5912C] font-inter font-medium tracking-wider uppercase text-sm sm:text-base">
-            {texts.heroTagline[language]}
-          </p>
-          <h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-snug text-[#F2EFE8] ${
-              language === "ar" ? "tracking-tight" : ""
-            }`}
-          >
-            {texts.heroTitle[language]}
-          </h1>
-          <p className="text-[#F2EFE8]/90 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-full lg:max-w-xl">
-            {texts.heroDescription[language]}
-          </p>
-          <p className="text-[#C5912C] font-semibold text-base sm:text-lg mt-2">
-            {texts.heroHighlight[language]}
-          </p>
+      {/* Canvas Effects */}
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />
 
-          {/* Bullets */}
-          <ul
-            className={`text-[#F2EFE8]/80 list-disc mt-2 space-y-2 text-sm sm:text-base max-w-xs sm:max-w-md mx-auto lg:mx-0 ${textAlign}`}
-          >
-            {texts.heroBullets[language].map((bullet, idx) => (
-              <li key={idx} className={language === "ar" ? "mr-6 leading-relaxed" : ""}>
-                {bullet}
-              </li>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 max-w-7xl w-full">
+        <div className="flex-1 text-center lg:text-left space-y-6">
+          <p className="text-[#C5912C] tracking-widest uppercase font-medium">
+            {texts.heroTagline}
+          </p>
+          <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-[#F2EFE8] to-[#C5912C] bg-clip-text text-transparent">
+            {texts.heroTitle}
+          </h1>
+          <p className="text-[#F2EFE8]/90 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+            {texts.heroDescription}
+          </p>
+          <p className="text-[#C5912C] font-semibold">{texts.heroHighlight}</p>
+          <ul className="list-disc text-[#F2EFE8]/80 pl-6">
+            {texts.heroBullets.map((b, i) => (
+              <li key={i}>{b}</li>
             ))}
           </ul>
 
           {/* Buttons */}
-          <div
-            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-${
-              language === "ar" ? "end" : "start"
-            } mt-4`}
-          >
-            <LuxuryButton
-              size="lg"
+          <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center lg:justify-start">
+            <button
               onClick={() => scrollToSection("purchase")}
-              className="group w-full sm:w-auto bg-[#C5912C] text-[#F2EFE8] font-semibold shadow-lg rounded-xl hover:scale-105 hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-2"
+              className="bg-[#C5912C] hover:bg-[#D8A13A] text-[#2E0D14] font-bold px-6 py-3 rounded-xl transition-all shadow-lg hover:scale-105"
             >
-              {texts.heroBtnPrimary[language]}
-              <ArrowDown className="ml-2 group-hover:translate-y-1 transition-transform" />
-            </LuxuryButton>
-
-            <LuxuryButton
-              size="lg"
+              {texts.heroBtnPrimary}
+            </button>
+            <button
               onClick={() => scrollToSection("about")}
-              className="w-full sm:w-auto bg-[#C5912C] text-[#F2EFE8] font-semibold shadow-lg rounded-xl hover:scale-105 hover:brightness-110 transition-all duration-300"
+              className="border border-[#C5912C] text-[#C5912C] hover:bg-[#C5912C]/20 font-bold px-6 py-3 rounded-xl transition-all"
             >
-              {texts.heroBtnSecondary[language]}
-            </LuxuryButton>
-
-            {/* Language Toggle */}
-            <LuxuryButton
-              size="lg"
-              onClick={toggleLanguage}
-              className="w-full sm:w-auto bg-[#F2EFE8] text-[#651C32] font-semibold shadow-lg rounded-xl hover:scale-105 hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <Globe size={18} />
-              {language === "fr" ? "العربية" : "Francais"}
-            </LuxuryButton>
+              {texts.heroBtnSecondary}
+            </button>
           </div>
         </div>
 
-        {/* Ebook */}
-        <div className="flex-1 relative flex justify-center lg:justify-end mt-8 lg:mt-0 animate-scale-in w-full max-w-md sm:max-w-lg lg:max-w-full">
-          <div className="relative w-full">
-            <div className="absolute inset-0 bg-[#C5912C]/20 rounded-3xl blur-2xl transform rotate-6 scale-105 animate-luxury-glow"></div>
-            <img
-              src={ebookCover}
-              alt="Sara Alöwe - Alchemical Cakes Volume 1"
-              className="relative z-10 w-full h-auto rounded-2xl shadow-luxury hover:scale-105 transition-all duration-500"
-            />
-          </div>
+        {/* Video */}
+        <div className="flex-1 relative">
+          <div className="absolute inset-0 bg-[#C5912C]/20 rounded-3xl blur-3xl animate-pulse"></div>
+          <video
+            src="/videos/cup mockup.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="relative z-10 rounded-3xl shadow-2xl border border-[#C5912C]/30 object-cover w-full max-w-xs sm:max-w-sm lg:max-w-md aspect-[9/16] hover:scale-105 transition-all duration-500"
+          />
         </div>
       </div>
 
-      {/* Scroll */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-        <button
-          onClick={() => scrollToSection("about")}
-          className="text-[#C5912C] hover:text-[#F2EFE8] transition-colors"
-        >
-          <ArrowDown size={24} />
-        </button>
+      {/* Scroll Arrow */}
+      <div className="absolute bottom-8 animate-bounce text-[#C5912C]">
+        <ArrowDown size={28} />
       </div>
     </section>
   );

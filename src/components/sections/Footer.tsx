@@ -2,45 +2,25 @@ import { Card } from "@/components/ui/card"
 import { LuxuryButton } from "@/components/ui/luxury-button"
 import { Mail, MessageCircle, Instagram } from "lucide-react"
 import pattern from "@/assets/pattern.jpg"
-import { useContext } from "react"
-import { LanguageContext } from "@/Context/languagecontext"
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear()
-  const { language } = useContext(LanguageContext)
 
   const content = {
-    fr: {
-      title: <>Restons en <span className="text-[#C5912C]">Contact</span></>,
-      description:
-        "Vous avez des questions sur nos ebooks ou souhaitez découvrir les prochains volumes de la collection ? N'hésitez pas à nous contacter.",
-      whatsapp: "WhatsApp",
-      email: "Email",
-      follow: "Suivez-nous :",
-      rights: `© ${currentYear} Sara Alöwe. Tous droits réservés.`,
-      dev: "Conception & Développement par l'équipe Sara Alöwe",
-      whatsappMessage:
-        "Bonjour ! Je souhaiterais obtenir plus d'informations sur vos ebooks de pâtisserie.",
-    },
-    ar: {
-      title: <>لنبقَ على <span className="text-[#C5912C]">تواصل</span></>,
-      description:
-        "هل لديك أسئلة حول كتبنا الإلكترونية أو ترغب في اكتشاف المجلدات القادمة من السلسلة؟ لا تتردد في الاتصال بنا.",
-      whatsapp: "واتساب",
-      email: "البريد الإلكتروني",
-      follow: "تابعنا على :",
-      rights: `© ${currentYear} سارة ألووي. جميع الحقوق محفوظة.`,
-      dev: "تصميم وتطوير فريق سارة ألووي",
-      whatsappMessage:
-        "مرحباً! أود الحصول على مزيد من المعلومات حول كتبكم الإلكترونية في مجال الحلويات.",
-    },
+    title: <>Stay in <span className="text-[#C5912C]">Touch</span></>,
+    description:
+      "Have questions about our ebooks or want to discover upcoming volumes in the collection? Don’t hesitate to reach out to us.",
+    whatsapp: "WhatsApp",
+    email: "Email",
+    follow: "Follow us:",
+    rights: `© ${currentYear} Saralöwe. All rights reserved.`,
+    dev: "Design & Development by the Saralöwe Team",
+    whatsappMessage:
+      "Hello! I’d like to get more information about your ebooks.",
   }
 
-  const direction = language === "ar" ? "rtl" : "ltr"
-  const textAlign = language === "ar" ? "text-right" : "text-center"
-
   const handleWhatsAppContact = () => {
-    const message = encodeURIComponent(content[language].whatsappMessage)
+    const message = encodeURIComponent(content.whatsappMessage)
     window.open(`https://wa.me/212600370277?text=${message}`, "_blank")
   }
 
@@ -49,7 +29,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="relative overflow-hidden" dir={direction}>
+    <footer className="relative overflow-hidden" dir="ltr">
       {/* Background */}
       <div className="absolute inset-0 bg-[#651C32]"></div>
 
@@ -65,12 +45,12 @@ export const Footer = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10 py-12 sm:py-16 lg:py-20">
         {/* Contact Section */}
-        <div className={`space-y-6 lg:space-y-8 animate-fade-in-up ${textAlign}`}>
+        <div className="space-y-6 lg:space-y-8 animate-fade-in-up text-center">
           <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white animate-bounce">
-            {content[language].title}
+            {content.title}
           </h3>
           <p className="text-white/80 font-inter leading-relaxed text-sm sm:text-base max-w-xl mx-auto">
-            {content[language].description}
+            {content.description}
           </p>
 
           {/* Buttons */}
@@ -81,7 +61,7 @@ export const Footer = () => {
               className="w-full sm:w-auto max-w-xs bg-[#25D366] hover:bg-[#1DA851] text-white transition-all"
             >
               <MessageCircle className="mr-2" size={18} />
-              {content[language].whatsapp}
+              {content.whatsapp}
             </LuxuryButton>
             <LuxuryButton
               variant="outline"
@@ -89,7 +69,7 @@ export const Footer = () => {
               className="w-full sm:w-auto max-w-xs border-white text-white hover:bg-white hover:text-[#651C32] transition-all"
             >
               <Mail className="mr-2" size={18} />
-              {content[language].email}
+              {content.email}
             </LuxuryButton>
           </div>
         </div>
@@ -100,7 +80,7 @@ export const Footer = () => {
             {/* Social Links */}
             <div className="flex flex-col items-center gap-3">
               <span className="text-white/70 font-inter text-sm">
-                {content[language].follow}
+                {content.follow}
               </span>
               <a
                 href="https://www.instagram.com/saracakeartist/"
@@ -115,10 +95,10 @@ export const Footer = () => {
             {/* Copyright */}
             <div className="text-center">
               <p className="text-white/70 font-inter text-xs sm:text-sm">
-                {content[language].rights}
+                {content.rights}
               </p>
               <p className="text-white/50 font-inter text-xs mt-1">
-                {content[language].dev}
+                {content.dev}
               </p>
             </div>
           </div>

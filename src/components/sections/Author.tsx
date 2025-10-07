@@ -3,16 +3,13 @@ import { Card } from "@/components/ui/card"
 import { Award, Star, Users } from "lucide-react"
 import authorPortrait from "@/assets/author-portrait.png"
 import pattern from "@/assets/pattern.jpg"
-import { useLanguage } from "@/Context/languagecontext"
 
 export const Author = () => {
-  const { language } = useLanguage()
-
   const achievements = [
-    { icon: Award, number: 15, suffix: "+", label: { fr: "Années d'expérience", ar: "سنوات خبرة" } },
-    { icon: Star, number: 500, suffix: "+", label: { fr: "Recettes créées", ar: "الوصفات المبتكرة" } },
-    { icon: Users, number: 5000, suffix: "+", label: { fr: "Élèves formés", ar: "الطلاب المتدربين" } },
-    { icon: null, number: 95000, suffix: "+", label: { fr: "Followers Instagram", ar: "متابعو إنستغرام" }, customIcon: "instagram", link: "https://www.instagram.com/" }
+    { icon: Award, number: 15, suffix: "+", label: "Years of Experience" },
+    { icon: Star, number: 500, suffix: "+", label: "Recipes Created" },
+    { icon: Users, number: 5000, suffix: "+", label: "Students Trained" },
+    { icon: null, number:100000, suffix: "+", label: "Instagram Followers", customIcon: "instagram", link: "https://www.instagram.com/" }
   ]
 
   const [visible, setVisible] = useState(false)
@@ -54,13 +51,8 @@ export const Author = () => {
     requestAnimationFrame(animate)
   }, [visible])
 
-  const direction = language === 'ar' ? 'rtl' : 'ltr'
-  const textAlign = language === 'ar' ? 'text-right' : 'text-left'
-  const flexDirection = language === 'ar' ? 'lg:flex-row-reverse' : 'lg:flex-row'
-  const fontArabic = language === 'ar' ? 'font-[Tajawal]' : ''
-
   return (
-    <section ref={sectionRef} className={`relative py-12 sm:py-16 lg:py-20 bg-[#651C32] overflow-hidden ${fontArabic}`} dir={direction}>
+    <section ref={sectionRef} className="relative py-12 sm:py-16 lg:py-20 bg-[#651C32] overflow-hidden">
       {/* Background Pattern */}
       <img 
         src={pattern} 
@@ -70,7 +62,7 @@ export const Author = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/40"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        <div className={`grid lg:grid-cols-2 gap-10 lg:gap-12 items-center ${flexDirection}`}>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
 
           {/* Author Image */}
           <div className="relative flex justify-center lg:justify-start mb-8 lg:mb-0 animate-scale-in">
@@ -78,7 +70,7 @@ export const Author = () => {
               <div className="absolute inset-0 bg-[#C5912C]/20 rounded-full blur-3xl scale-110"></div>
               <img 
                 src={authorPortrait}
-                alt="Sara Alöwe - Chef Pâtissière"
+                alt="Sara Alöwe - Pastry Chef"
                 className="relative z-10 w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 object-cover rounded-full shadow-2xl border-4 border-[#C5912C]/30"
               />
               <div className="absolute -bottom-3 -right-3 bg-[#C5912C] text-[#651C32] p-2.5 lg:p-3 rounded-full shadow-lg">
@@ -90,9 +82,9 @@ export const Author = () => {
           {/* Content */}
           <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             {/* Title */}
-            <div className={textAlign}>
+            <div className="text-left">
               <p className="text-[#C5912C] font-inter font-medium tracking-wider uppercase text-sm">
-                 {language === 'fr' ? "Rencontrez l'auteure" : "تعرف على المؤلفة"}
+                Meet the Author
               </p>
               <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
                 Sara <span className="text-[#C5912C]">Alöwe</span>
@@ -100,26 +92,19 @@ export const Author = () => {
             </div>
 
             {/* Bio */}
-            <div className={`text-white/80 font-inter leading-relaxed space-y-2 ${textAlign} ${language==='fr' ? 'text-sm sm:text-base md:text-lg' : 'text-base sm:text-lg md:text-xl'}`}>
-              {language === 'fr' ? (
-                <>
-                  <p>
-                    Sara Alöwe est une <strong>cake designer</strong> et <strong>formatrice passionnée</strong>, connue pour son sens du détail et son approche artistique de la pâtisserie. Après de nombreuses demandes de ses élèves, elle a rassemblé son savoir-faire dans une <strong>collection en trois volumes</strong> comprenant <strong>30 recettes innovantes</strong> pour le cake design.
-                  </p>
-                  <p>
-                    <strong>Alchemy in Layers – 10 recettes de cakes innovants</strong> est le premier tome de cette série, dédié à la <strong>stabilité</strong>, la <strong>créativité</strong> et l’excellence en pâtisserie moderne.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>
-                    سارة ألووي هي <strong>مصممة كيك</strong> و<strong>مدربة شغوفة</strong>، معروفة باهتمامها بالتفاصيل ونهجها الفني في الحلويات. بعد طلبات كثيرة من طلابها، جمعت خبرتها في <strong>مجموعة من ثلاثة مجلدات</strong> تحتوي على <strong>30 وصفة مبتكرة</strong> لتصميم الكيك.
-                  </p>
-                  <p>
-                    <strong>الخيمياء في الطبقات – 10 وصفات كيك مبتكرة</strong> هو الجزء الأول من هذه السلسلة، مخصص للـ <strong>ثبات</strong> و<strong>الإبداع</strong> والتميز في الحلويات الحديثة.
-                  </p>
-                </>
-              )}
+            <div className="text-white/80 font-inter leading-relaxed space-y-2 text-sm sm:text-base md:text-lg">
+              <p>
+                Sara Alöwe is a <strong>cake designer</strong> and <strong>passionate instructor</strong>,     
+                known for her attention to detail and artistic approach to pastry. 
+                After many requests from her students, she compiled her expertise into a 
+                <strong> three-volume collection</strong> featuring <strong>30 innovative cake recipes</strong> 
+                for modern cake design.
+              </p>
+              <p>
+                <strong>Cupcake Evolution – 10 Innovative Cake Recipes</strong> is the first volume in this series, 
+                dedicated to <strong>stability</strong>, <strong>creativity</strong>, and <strong>excellence</strong> 
+                in contemporary pastry.
+              </p>
             </div>
 
             {/* Achievements */}
@@ -150,7 +135,7 @@ export const Author = () => {
                     {counts[index].toLocaleString()}{achievement.suffix}
                   </div>
                   <div className="text-white/70 font-inter text-xs sm:text-sm">
-                    {achievement.label[language]}
+                    {achievement.label}
                   </div>
                 </Card>
               ))}
@@ -160,12 +145,11 @@ export const Author = () => {
             <Card className="bg-[#651C32]/70 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border-l-4 border-[#C5912C]/50 mt-6">
               <blockquote className="space-y-2">
                 <p className="text-white/80 font-inter italic text-sm sm:text-base leading-relaxed">
-                  {language==='fr' 
-                    ? "« L’alchimie n’est pas magie… c’est la science des ingrédients naturels, travaillés avec justesse pour créer la stabilité et la beauté des gâteaux. »"
-                    : "« الكيمياء ليست سحرًا… إنها علم المكونات الطبيعية، معالجَة بعناية لخلق الثبات وجمال الكعك. »"}
+                  “Alchemy is not magic… it’s the science of natural ingredients, 
+                  carefully balanced to create stability and beauty in cakes.”
                 </p>
                 <footer className="text-[#C5912C] font-playfair font-semibold text-xs sm:text-sm">
-                  — Sara Alöwe
+                  — Saralöwe
                 </footer>
               </blockquote>
             </Card>
