@@ -5,11 +5,11 @@ import pattern from "@/assets/pattern.jpg";
 import { LanguageContext } from "@/Context/languagecontext";
 
 // Import student application images
-import img1 from "@/assets/student/1.jpg";
-import img2 from "@/assets/student/2.jpg";
-import img3 from "@/assets/student/3.jpg";
-import img4 from "@/assets/student/4.jpg";
-import img5 from "@/assets/student/5.jpg";
+import img1 from "@/assets/Student/1.jpg";
+import img2 from "@/assets/Student/2.jpg";
+import img3 from "@/assets/Student/3.jpg";
+import img4 from "@/assets/Student/4.jpg";
+import img5 from "@/assets/Student/5.jpg";
 
 export const ReviewsAndApplications = () => {
   const { language } = useContext(LanguageContext);
