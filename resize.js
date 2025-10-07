@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 
-const inputFolder = path.join("src/assets/saralowe");
-const outputFolder = path.join("src/assets/saralowe/resized");
+const inputFolder = path.join("src/assets");
+const outputFolder = path.join("src/assets/resized");
 
 if (!fs.existsSync(outputFolder)) fs.mkdirSync(outputFolder);
 

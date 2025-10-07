@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Award, Star, Users } from "lucide-react"
-import authorPortrait from "@/assets/author-portrait.png"
+import authorPortrait from "@/assets/resized/author-portrait.webp"
 import pattern from "@/assets/pattern.jpg"
 
 export const Author = () => {

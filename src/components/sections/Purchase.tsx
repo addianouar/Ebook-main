@@ -106,7 +106,7 @@ export const Purchase = () => {
     const message = encodeURIComponent(
       "Hello! I'm interested in the ebook 'Cupcakes Volume 1' and would like to pay via bank transfer. Can you please provide the details?"
     );
-    window.open(`https://wa.me/+212600370277?text=${message}`, "_blank");
+    window.open(`https://wa.me/+212664576477?text=${message}`, "_blank");
   };
 
   return (

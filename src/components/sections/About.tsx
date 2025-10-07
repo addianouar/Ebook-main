@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import pattern from "@/assets/pattern.jpg";
 
 // ===== Slider Images (your saralowe folder) =====
-import img1 from "@/assets/saralowe/IMG_0840.jpg";
-import img2 from "@/assets/saralowe/IMG_0845.jpg";
-import img3 from "@/assets/saralowe/IMG_0837.jpg";
-import img4 from "@/assets/saralowe/IMG_0839.jpg";
-import img5 from "@/assets/saralowe/IMG_0841.jpg";
-import img6 from "@/assets/saralowe/IMG_0888.jpg";
-import img7 from "@/assets/saralowe/IMG_0856.jpg";
-import img8 from "@/assets/saralowe/IMG_0848.jpg";
-import img9 from "@/assets/saralowe/IMG_0890.jpg";
-import img10 from "@/assets/saralowe/IMG_0862.jpg";
-import img11 from "@/assets/saralowe/IMG_0858.jpg";
-import img12 from "@/assets/saralowe/IMG_0869.jpg";
+import img1 from "@/assets/saralowe/resized/IMG_0840.webp";
+import img2 from "@/assets/saralowe/resized/IMG_0845.webp";
+import img3 from "@/assets/saralowe/resized/IMG_0837.webp";
+import img4 from "@/assets/saralowe/resized/IMG_0839.webp";
+import img5 from "@/assets/saralowe/resized/IMG_0841.webp";
+import img6 from "@/assets/saralowe/resized/IMG_0888.webp";
+import img7 from "@/assets/saralowe/resized/IMG_0856.webp";
+import img8 from "@/assets/saralowe/resized/IMG_0848.webp";
+import img9 from "@/assets/saralowe/resized/IMG_0890.webp";
+import img10 from "@/assets/saralowe/resized/IMG_0862.webp";
+import img11 from "@/assets/saralowe/resized/IMG_0858.webp";
+import img12 from "@/assets/saralowe/resized/IMG_0869.webp";
 
 const sliderImages = [
   img1,

@@ -4,34 +4,33 @@ import { Card } from "@/components/ui/card";
 import pattern from "@/assets/pattern.jpg";
 
 // ===== Import images =====
-import IMG_0819 from "@/assets/saralowe/IMG_0819.jpg";
-import IMG_0832 from "@/assets/saralowe/IMG_0832.jpg";
-import IMG_0818 from "@/assets/saralowe/IMG_0818.jpg";
-import IMG_0840 from "@/assets/saralowe/IMG_0840.jpg";
-import IMG_0825 from "@/assets/saralowe/IMG_0825.jpg";
-import IMG_0823 from "@/assets/saralowe/IMG_0823.jpg";
-import IMG_0820 from "@/assets/saralowe/IMG_0820.jpg";
-import IMG_0827 from "@/assets/saralowe/IMG_0827.jpg";
-import IMG_0833 from "@/assets/saralowe/IMG_0833.jpg";
-import IMG_0829 from "@/assets/saralowe/IMG_0829.jpg";
-import IMG_0830 from "@/assets/saralowe/IMG_0830.jpg";
-import IMG_0845 from "@/assets/saralowe/IMG_0845.jpg";
-import IMG_0837 from "@/assets/saralowe/IMG_0837.jpg";
-import IMG_0839 from "@/assets/saralowe/IMG_0839.jpg";
-import IMG_0841 from "@/assets/saralowe/IMG_0841.jpg";
-import IMG_0842 from "@/assets/saralowe/IMG_0842.jpg";
-import IMG_0888 from "@/assets/saralowe/IMG_0888.jpg";
-import IMG_0856 from "@/assets/saralowe/IMG_0856.jpg";
-import IMG_0848 from "@/assets/saralowe/IMG_0848.jpg";
-import IMG_0890 from "@/assets/saralowe/IMG_0890.jpg";
-import IMG_0862 from "@/assets/saralowe/IMG_0862.jpg";
-import IMG_0858 from "@/assets/saralowe/IMG_0858.jpg";
-import IMG_0846 from "@/assets/saralowe/IMG_0846.jpg";
-import IMG_0869 from "@/assets/saralowe/IMG_0869.jpg";
-import IMG_0874 from "@/assets/saralowe/IMG_0874.jpg";
-import IMG_0849 from "@/assets/saralowe/IMG_0849.jpg";
-import IMG_0883 from "@/assets/saralowe/IMG_0883.jpg";
-
+import IMG_0819 from "@/assets/saralowe/resized/IMG_0819.webp";
+import IMG_0832 from "@/assets/saralowe/resized/IMG_0832.webp";
+import IMG_0818 from "@/assets/saralowe/resized/IMG_0818.webp";
+import IMG_0840 from "@/assets/saralowe/resized/IMG_0840.webp";
+import IMG_0825 from "@/assets/saralowe/resized/IMG_0825.webp";
+import IMG_0823 from "@/assets/saralowe/resized/IMG_0823.webp";
+import IMG_0820 from "@/assets/saralowe/resized/IMG_0820.webp";
+import IMG_0827 from "@/assets/saralowe/resized/IMG_0827.webp";
+import IMG_0833 from "@/assets/saralowe/resized/IMG_0833.webp";
+import IMG_0829 from "@/assets/saralowe/resized/IMG_0829.webp";
+import IMG_0830 from "@/assets/saralowe/resized/IMG_0830.webp";
+import IMG_0845 from "@/assets/saralowe/resized/IMG_0845.webp";
+import IMG_0837 from "@/assets/saralowe/resized/IMG_0837.webp";
+import IMG_0839 from "@/assets/saralowe/resized/IMG_0839.webp";
+import IMG_0841 from "@/assets/saralowe/resized/IMG_0841.webp";
+import IMG_0842 from "@/assets/saralowe/resized/IMG_0842.webp";
+import IMG_0888 from "@/assets/saralowe/resized/IMG_0888.webp";
+import IMG_0856 from "@/assets/saralowe/resized/IMG_0856.webp";
+import IMG_0848 from "@/assets/saralowe/resized/IMG_0848.webp";
+import IMG_0890 from "@/assets/saralowe/resized/IMG_0890.webp";
+import IMG_0862 from "@/assets/saralowe/resized/IMG_0862.webp";
+import IMG_0858 from "@/assets/saralowe/resized/IMG_0858.webp";
+import IMG_0846 from "@/assets/saralowe/resized/IMG_0846.webp";
+import IMG_0869 from "@/assets/saralowe/resized/IMG_0869.webp";
+import IMG_0874 from "@/assets/saralowe/resized/IMG_0874.webp";
+import IMG_0849 from "@/assets/saralowe/resized/IMG_0849.webp";
+import IMG_0883 from "@/assets/saralowe/resized/IMG_0883.webp";
 const recipeImages = [
   IMG_0819, IMG_0832, IMG_0818, IMG_0840, IMG_0825, IMG_0823,
   IMG_0820, IMG_0827, IMG_0833, IMG_0829, IMG_0830, IMG_0845,
