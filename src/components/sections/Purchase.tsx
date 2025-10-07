@@ -19,7 +19,7 @@ export const Purchase = () => {
       author: "By Sara Alöwe",
       oldPrice: "1999 MAD",
       newPrice: "799 MAD",
-      discount: "-39%",
+      discount: "-60%",
       offer: "Limited launch offer",
       timerTitle: " Special Offer Ends In:",
       benefitsTitle: "What You’ll Get:",
