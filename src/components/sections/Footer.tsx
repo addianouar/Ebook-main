@@ -21,7 +21,7 @@ export const Footer = () => {
 
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent(content.whatsappMessage)
-    window.open(`https://wa.me/212600370277?text=${message}`, "_blank")
+    window.open(`https://wa.me/212664576477?text=${message}`, "_blank")
   }
 
   const handleEmailContact = () => {

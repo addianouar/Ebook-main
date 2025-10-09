@@ -4,6 +4,7 @@ import { LuxuryButton } from "@/components/ui/luxury-button";
 import { Check, Download, Shield, MessageCircle, CreditCard, Clock } from "lucide-react";
 import ebookCover from "@/assets/cupcake.jpg";
 import pattern from "@/assets/pattern.jpg";
+import Swal from "sweetalert2";
 import { useRef, useEffect, useState } from "react";
 
 export const Purchase = () => {
@@ -95,13 +96,175 @@ export const Purchase = () => {
     };
   }, []);
 
-  const handlePayPalPayment = () => {
-    window.open(
-      `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=saraalaoui.paypal@gmail.com&amount=76&currency_code=EUR&item_name=Alchemical+Cakes+Vol+1`,
-      "_blank"
-    );
-  };
+const handlePayPalPayment = async () => {
+  const { value: formValues } = await Swal.fire({
+    title: "Enter Your Info",
+    html: `
+      <style>
+        .swal2-popup {
+          border-radius: 16px;
+          padding: 2rem;
+        }
+        
+        .swal2-title {
+          font-size: 1.75rem;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 1.5rem;
+        }
+        
+        .swal2-html-container {
+          margin: 0;
+        }
+        
+        .swal2-input {
+          width: 85%;
+          padding: 0.875rem 1rem;
+          margin: 0.625rem auto;
+          border: 2px solid #e5e7eb;
+          border-radius: 10px;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          box-shadow: none;
+        }
+        
+        .swal2-input:focus {
+          border-color: #C5912C;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(197, 145, 44, 0.1);
+        }
+        
+        .swal2-input::placeholder {
+          color: #9ca3af;
+          font-weight: 400;
+        }
+        
+        .swal2-input:hover {
+          border-color: #d1d5db;
+        }
+        
+        .swal2-actions {
+          margin-top: 1.75rem;
+          gap: 0.75rem;
+        }
+        
+        .swal2-confirm, .swal2-cancel {
+          padding: 0.75rem 2rem;
+          font-size: 1rem;
+          font-weight: 500;
+          border-radius: 10px;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .swal2-confirm:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(197, 145, 44, 0.3);
+        }
+        
+        .swal2-cancel:hover {
+          background-color: #94a3b8 !important;
+          transform: translateY(-2px);
+        }
+        
+        .swal2-validation-message {
+          background-color: #fee2e2;
+          color: #991b1b;
+          border: 1px solid #fca5a5;
+          border-radius: 8px;
+          padding: 0.75rem;
+          margin-top: 1rem;
+          font-weight: 500;
+        }
+      </style>
+      <input id="swal-email" type="email" class="swal2-input" placeholder="Your Email Address" required>
+      <input id="swal-phone" type="tel" class="swal2-input" placeholder="Your Phone Number" required>
+    `,
+    focusConfirm: false,
+    confirmButtonText: "Validate & Continue",
+    confirmButtonColor: "#C5912C",
+    showCancelButton: true,
+    cancelButtonColor: "#94a3b8",
+    preConfirm: () => {
+      const email = (document.getElementById("swal-email") as HTMLInputElement)?.value;
+      const phone = (document.getElementById("swal-phone") as HTMLInputElement)?.value;
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !phone) {
+        Swal.showValidationMessage("Please fill out both fields!");
+        return null;
+      }
+      if (!emailRegex.test(email)) {
+        Swal.showValidationMessage("Please enter a valid email address!");
+        return null;
+      }
+      return { email, phone };
+    },
+  });
 
+  if (formValues) {
+    try {
+      await fetch("https://formspree.io/f/mjkaabrb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formValues.email,
+          phone: formValues.phone,
+          message: "New ebook order - Cupcake Evolution Vol 1",
+        }),
+      });
+
+      Swal.fire({
+        icon: "success",
+        title: "Redirecting to PayPal...",
+        html: `
+          <style>
+            .swal2-popup {
+              border-radius: 16px;
+            }
+            .swal2-icon.swal2-success {
+              border-color: #C5912C;
+            }
+            .swal2-icon.swal2-success [class^='swal2-success-line'] {
+              background-color: #C5912C;
+            }
+            .swal2-icon.swal2-success .swal2-success-ring {
+              border-color: rgba(197, 145, 44, 0.3);
+            }
+          </style>
+          <p style="color: #6b7280; margin-top: 0.5rem;">Please complete your payment on PayPal</p>
+        `,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      setTimeout(() => {
+        window.open(
+          `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=saraalaoui.paypal@gmail.com&amount=76&currency_code=EUR&item_name=Alchemical+Cakes+Vol+1`,
+          "_blank"
+        );
+      }, 1500);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        html: `
+          <style>
+            .swal2-popup {
+              border-radius: 16px;
+            }
+          </style>
+          <p style="color: #6b7280; margin-top: 0.5rem;">Failed to send your info. Please try again.</p>
+        `,
+        confirmButtonColor: "#C5912C",
+        confirmButtonText: "Try Again",
+      });
+    }
+  }
+};
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent(
       "Hello! I'm interested in the ebook 'Cupcakes Volume 1' and would like to pay via bank transfer. Can you please provide the details?"
