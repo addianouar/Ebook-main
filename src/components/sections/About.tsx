@@ -18,18 +18,8 @@ import img11 from "@/assets/saralowe/resized/IMG_0858.webp";
 import img12 from "@/assets/saralowe/resized/IMG_0869.webp";
 
 const sliderImages = [
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img9,
-  img10,
-  img11,
-  img12,
+  img1, img2, img3, img4, img5, img6,
+  img7, img8, img9, img10, img11, img12,
 ];
 
 export const About = () => {
@@ -38,7 +28,7 @@ export const About = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 1300); // cinematic speed
+    }, 1300);
     return () => clearInterval(interval);
   }, []);
 
@@ -75,29 +65,28 @@ export const About = () => {
   return (
     <section
       id="about"
-      className="relative py-16 sm:py-20 overflow-hidden bg-[#F2EFE8]"
+      className="relative py-12 sm:py-16 lg:py-24 xl:py-32 overflow-hidden bg-[#F2EFE8]"
     >
-      {/* Background Pattern */}
+      {/* Background */}
       <img
         src={pattern}
         alt="Pattern"
-        className="absolute inset-0 w-full h-full object-cover opacity-10 z-0 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none"
       />
 
-      <div className="container mx-auto px-5 sm:px-6 lg:px-12 relative z-10 text-center flex flex-col items-center">
-        {/* Cinematic Slider (auto height, adapts to image size) */}
-        <div className="relative w-[90%] sm:w-[80%] md:w-[65%] lg:w-[55%] overflow-hidden rounded-3xl shadow-2xl mb-12">
-          {sliderImages.map((img, idx) => (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-24 relative z-10">
+        {/* Image Slider - RESPONSIVE */}
+        <div className="relative w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto mb-12 sm:mb-16 lg:mb-20 xl:mb-24 rounded-3xl overflow-hidden shadow-2xl">
+          {sliderImages.map((img, i) => (
             <img
-              key={idx}
+              key={i}
               src={img}
-              alt={`Slide ${idx + 1}`}
-              className={`w-full h-auto object-contain transition-opacity duration-700 ease-in-out absolute left-0 top-0 ${
-                idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+              alt={`Slide ${i + 1}`}
+              className={`absolute top-0 left-0 w-full h-auto object-contain transition-all duration-700 ${
+                i === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             />
           ))}
-          {/* Keeps container height equal to image height dynamically */}
           <img
             src={sliderImages[currentSlide]}
             alt="reference"
@@ -105,35 +94,35 @@ export const About = () => {
           />
         </div>
 
-        {/* Section Title */}
-        <div className="mb-12 lg:mb-16 text-center">
-          <p className="text-[#C5912C] font-medium uppercase tracking-widest text-sm sm:text-base">
+        {/* Section Title - RESPONSIVE */}
+        <div className="mb-12 sm:mb-16 lg:mb-20 xl:mb-24 text-center">
+          <p className="text-[#C5912C] font-medium uppercase tracking-widest text-xs sm:text-sm lg:text-base mb-2 sm:mb-3">
             {texts.sectionTitle}
           </p>
           <h2
-            className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#C5912C] leading-tight mt-2"
+            className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-[#C5912C] leading-tight mt-2"
             dangerouslySetInnerHTML={{ __html: texts.sectionHeading }}
           />
-          <p className="text-[#1D3C34] text-base sm:text-lg md:text-xl font-inter leading-relaxed mt-4 max-w-2xl mx-auto">
+          <p className="text-[#1D3C34] text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-inter leading-relaxed mt-4 sm:mt-6 max-w-2xl lg:max-w-4xl mx-auto">
             {texts.sectionDescription}
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center place-items-center">
+        {/* Cards - FULLY RESPONSIVE GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 max-w-7xl 2xl:max-w-screen-2xl mx-auto">
           {texts.cards.map((card, idx) => (
             <Card
               key={idx}
-              className="bg-[#F2EFE8]/90 border border-[#C5912C]/30 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 w-[85%] sm:w-[80%] lg:w-[90%] text-center"
+              className="bg-[#F2EFE8]/90 border-2 border-[#C5912C]/30 p-6 sm:p-8 lg:p-10 xl:p-12 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 text-center"
             >
-              <div className="flex flex-col items-center gap-4">
-                <div className="bg-[#C5912C]/20 p-3 rounded-xl flex items-center justify-center">
-                  <card.icon className="text-[#C5912C]" size={28} />
+              <div className="flex flex-col items-center gap-4 sm:gap-5 lg:gap-6">
+                <div className="bg-[#C5912C]/20 p-3 sm:p-4 lg:p-5 rounded-xl flex items-center justify-center">
+                  <card.icon className="text-[#C5912C] w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10" size={28} />
                 </div>
-                <h3 className="font-playfair text-lg font-bold text-[#A6192E] mb-1">
+                <h3 className="font-playfair text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-[#A6192E] mb-1">
                   {card.title}
                 </h3>
-                <p className="text-[#1D3C34] text-sm sm:text-base font-inter leading-snug">
+                <p className="text-[#1D3C34] text-sm sm:text-base lg:text-lg xl:text-xl font-inter leading-snug">
                   {card.text}
                 </p>
               </div>

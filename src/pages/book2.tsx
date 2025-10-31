@@ -7,9 +7,11 @@ import { Author } from "@/components/sections/Author"
 import { Purchase } from "@/components/sections/Purchase"
 import { Footer } from "@/components/sections/Footer"
 
-const Index = () => {
+const Book2 = () => {
   return (
     <div className="min-h-screen bg-luxury-dark relative">
+      {/* NOTE: This is a duplicate of the first book landing page */}
+      {/* Content will be customized later with Book 2 specific information */}
       <Hero />
       <About />
       <Preview />
@@ -22,4 +24,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Book2

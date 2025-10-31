@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
-import pattern from "@/assets/pattern.jpg"; // import your pattern
+import pattern from "@/assets/pattern.jpg";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -138,7 +138,7 @@ export const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#4A0E1F] via-[#651C32] to-[#2E0D14] text-[#F2EFE8] px-6"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#4A0E1F] via-[#651C32] to-[#2E0D14] text-[#F2EFE8] px-4 sm:px-6 lg:px-12 py-12 lg:py-20"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 pointer-events-none">
@@ -152,59 +152,69 @@ export const Hero = () => {
       {/* Canvas Effects */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 max-w-7xl w-full">
-        <div className="flex-1 text-center lg:text-left space-y-6">
-          <p className="text-[#C5912C] tracking-widest uppercase font-medium">
+      {/* Content - FULLY RESPONSIVE */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 xl:gap-24 w-full max-w-7xl 2xl:max-w-screen-2xl mx-auto">
+        
+        {/* Text Content - Left Side */}
+        <div className="flex-1 w-full text-center lg:text-left space-y-4 sm:space-y-6 lg:space-y-8">
+          <p className="text-[#C5912C] tracking-widest uppercase font-medium text-xs sm:text-sm lg:text-base">
             {texts.heroTagline}
           </p>
-          <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-[#F2EFE8] to-[#C5912C] bg-clip-text text-transparent">
+          
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold bg-gradient-to-r from-[#F2EFE8] to-[#C5912C] bg-clip-text text-transparent leading-tight">
             {texts.heroTitle}
           </h1>
-          <p className="text-[#F2EFE8]/90 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+          
+          <p className="text-[#F2EFE8]/90 text-sm sm:text-base lg:text-lg xl:text-xl leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0">
             {texts.heroDescription}
           </p>
-          <p className="text-[#C5912C] font-semibold">{texts.heroHighlight}</p>
-          <ul className="list-disc text-[#F2EFE8]/80 pl-6">
+          
+          <p className="text-[#C5912C] font-semibold text-sm sm:text-base lg:text-lg">
+            {texts.heroHighlight}
+          </p>
+          
+          <ul className="list-disc text-[#F2EFE8]/80 text-sm sm:text-base lg:text-lg pl-6 space-y-1 sm:space-y-2 max-w-xl lg:max-w-2xl mx-auto lg:mx-0">
             {texts.heroBullets.map((b, i) => (
               <li key={i}>{b}</li>
             ))}
           </ul>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 mt-6 lg:mt-8 justify-center lg:justify-start">
             <button
               onClick={() => scrollToSection("purchase")}
-              className="bg-[#C5912C] hover:bg-[#D8A13A] text-[#2E0D14] font-bold px-6 py-3 rounded-xl transition-all shadow-lg hover:scale-105"
+              className="bg-[#C5912C] hover:bg-[#D8A13A] text-[#2E0D14] font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-sm sm:text-base lg:text-lg rounded-xl transition-all shadow-lg hover:scale-105"
             >
               {texts.heroBtnPrimary}
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="border border-[#C5912C] text-[#C5912C] hover:bg-[#C5912C]/20 font-bold px-6 py-3 rounded-xl transition-all"
+              className="border-2 border-[#C5912C] text-[#C5912C] hover:bg-[#C5912C]/20 font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 text-sm sm:text-base lg:text-lg rounded-xl transition-all"
             >
               {texts.heroBtnSecondary}
             </button>
           </div>
         </div>
 
-        {/* Video */}
-        <div className="flex-1 relative">
-          <div className="absolute inset-0 bg-[#C5912C]/20 rounded-3xl blur-3xl animate-pulse"></div>
-          <video
-            src="/videos/cup mockup.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="relative z-10 rounded-3xl shadow-2xl border border-[#C5912C]/30 object-cover w-full max-w-xs sm:max-w-sm lg:max-w-md aspect-[9/16] hover:scale-105 transition-all duration-500"
-          />
+        {/* Video - Right Side - RESPONSIVE SIZING */}
+        <div className="flex-1 w-full flex justify-center lg:justify-end">
+          <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[550px] 2xl:max-w-[650px]">
+            <div className="absolute inset-0 bg-[#C5912C]/20 rounded-3xl blur-3xl animate-pulse"></div>
+            <video
+              src="/videos/cup mockup.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="relative z-10 rounded-3xl shadow-2xl border-2 sm:border-4 border-[#C5912C]/30 object-cover w-full aspect-[9/16] hover:scale-105 transition-all duration-500"
+            />
+          </div>
         </div>
       </div>
 
       {/* Scroll Arrow */}
-      <div className="absolute bottom-8 animate-bounce text-[#C5912C]">
-        <ArrowDown size={28} />
+      <div className="absolute bottom-6 sm:bottom-8 lg:bottom-12 animate-bounce text-[#C5912C]">
+        <ArrowDown size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
       </div>
     </section>
   );
