@@ -22,14 +22,14 @@ const Home = () => {
     },
     {
       id: 2,
-      title: "COMING SOON",
-      subtitle: "Vol 2",
-      cover: cupcakeCover, // Placeholder - replace with actual cover
+      title: "ALCHEMY IN LAYERS",
+      subtitle: "Vol 1",
+      cover: cupcakeCover, // TODO: Replace with alchemy-cover.jpg when you add it
       route: "/book2",
-      description: "Discover the next evolution in pastry artistry",
-      price: "Coming Soon",
-      oldPrice: "",
-      features: ["New Flavors", "Advanced Methods", "Exclusive Content", "Early Access"]
+      description: "10 exclusive recipes designed in layers for cake design, guaranteeing flavor, elegance, and stability",
+      price: "799 MAD",
+      oldPrice: "1299 MAD",
+      features: ["10 Layer Cake Recipes", "Cake Design Focused", "Stable Creams & Ganaches", "Step-by-Step Guide"]
     }
   ];
 
