@@ -4,20 +4,22 @@ import { Card } from "@/components/ui/card";
 import pattern from "@/assets/pattern.jpg";
 
 // ===== Import images (using same as Book 1 for now - replace with Book 2 images) =====
-import IMG_0819 from "@/assets/saralowe/resized/IMG_0819.webp";
-import IMG_0832 from "@/assets/saralowe/resized/IMG_0832.webp";
-import IMG_0818 from "@/assets/saralowe/resized/IMG_0818.webp";
-import IMG_0840 from "@/assets/saralowe/resized/IMG_0840.webp";
-import IMG_0825 from "@/assets/saralowe/resized/IMG_0825.webp";
-import IMG_0823 from "@/assets/saralowe/resized/IMG_0823.webp";
-import IMG_0820 from "@/assets/saralowe/resized/IMG_0820.webp";
-import IMG_0827 from "@/assets/saralowe/resized/IMG_0827.webp";
-import IMG_0833 from "@/assets/saralowe/resized/IMG_0833.webp";
-import IMG_0829 from "@/assets/saralowe/resized/IMG_0829.webp";
+import img1 from "@/assets/book2/pic1.webp";
+import img2 from "@/assets/book2/pic2.webp";
+import img3 from "@/assets/book2/pic3.webp";
+import img4 from "@/assets/book2/pic4.webp";
+import img5 from "@/assets/book2/pic5.webp";
+import img6 from "@/assets/book2/pic6.webp";
+import img7 from "@/assets/book2/pic7.webp";
+import img8 from "@/assets/book2/pic8.webp";
+import img9 from "@/assets/book2/pic9.webp";
+import img10 from "@/assets/book2/pic10.webp";
+import img11 from "@/assets/book2/pic11.webp";
+import img12 from "@/assets/book2/pic12.webp";
 
 const recipeImages = [
-  IMG_0819, IMG_0832, IMG_0818, IMG_0840, IMG_0825,
-  IMG_0823, IMG_0820, IMG_0827, IMG_0833, IMG_0829
+  img1, img2, img3, img4, img5, img6,
+  img7, img8, img9, img10, img11, img12
 ];
 
 // ===== 10 Recipes Data =====

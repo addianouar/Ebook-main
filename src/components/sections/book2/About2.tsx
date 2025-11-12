@@ -5,18 +5,18 @@ import pattern from "@/assets/pattern.jpg";
 
 // ===== You'll need to add images for Book 2 slider =====
 // For now, using same images as Book 1 - replace with Book 2 images later
-import img1 from "@/assets/saralowe/resized/IMG_0840.webp";
-import img2 from "@/assets/saralowe/resized/IMG_0845.webp";
-import img3 from "@/assets/saralowe/resized/IMG_0837.webp";
-import img4 from "@/assets/saralowe/resized/IMG_0839.webp";
-import img5 from "@/assets/saralowe/resized/IMG_0841.webp";
-import img6 from "@/assets/saralowe/resized/IMG_0888.webp";
-import img7 from "@/assets/saralowe/resized/IMG_0856.webp";
-import img8 from "@/assets/saralowe/resized/IMG_0848.webp";
-import img9 from "@/assets/saralowe/resized/IMG_0890.webp";
-import img10 from "@/assets/saralowe/resized/IMG_0862.webp";
-import img11 from "@/assets/saralowe/resized/IMG_0858.webp";
-import img12 from "@/assets/saralowe/resized/IMG_0869.webp";
+import img1 from "@/assets/book2/pic1.webp";
+import img2 from "@/assets/book2/pic2.webp";
+import img3 from "@/assets/book2/pic3.webp";
+import img4 from "@/assets/book2/pic4.webp";
+import img5 from "@/assets/book2/pic5.webp";
+import img6 from "@/assets/book2/pic6.webp";
+import img7 from "@/assets/book2/pic7.webp";
+import img8 from "@/assets/book2/pic8.webp";
+import img9 from "@/assets/book2/pic9.webp";
+import img10 from "@/assets/book2/pic10.webp";
+import img11 from "@/assets/book2/pic11.webp";
+import img12 from "@/assets/book2/pic12.webp";
 
 const sliderImages = [
   img1, img2, img3, img4, img5, img6,

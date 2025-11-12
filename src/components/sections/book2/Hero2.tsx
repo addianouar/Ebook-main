@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
 import pattern from "@/assets/pattern.jpg";
-import alchemyBookCover from "@/assets/alchemy-cover.jpg"; // You'll need to add this image
+import alchemyBookCover from "@/assets/ebook-cover.webp"; // You'll need to add this image
 
 export const Hero2 = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

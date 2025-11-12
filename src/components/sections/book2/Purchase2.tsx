@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { LuxuryButton } from "@/components/ui/luxury-button";
 import { Check, Download, Shield, MessageCircle, CreditCard, Clock } from "lucide-react";
-import ebookCover from "@/assets/alchemy-cover.jpg"; // You'll need to add this image
+import ebookCover from "@/assets/ebook-cover.webp"; // You'll need to add this image
 import pattern from "@/assets/pattern.jpg";
 import Swal from "sweetalert2";
 import { useRef, useEffect, useState } from "react";

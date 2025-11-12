@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen, Star, Sparkles } from "lucide-react";
 import pattern from "@/assets/pattern.jpg";
 import cupcakeCover from "@/assets/cupcake.jpg";
-
+import ebookcover from "@/assets/ebook-cover.webp"; 
 const Home = () => {
   const navigate = useNavigate();
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
@@ -24,7 +24,7 @@ const Home = () => {
       id: 2,
       title: "ALCHEMY IN LAYERS",
       subtitle: "Vol 1",
-      cover: cupcakeCover, // TODO: Replace with alchemy-cover.jpg when you add it
+      cover: ebookcover, // TODO: Replace with alchemy-cover.jpg when you add it
       route: "/book2",
       description: "10 exclusive recipes designed in layers for cake design, guaranteeing flavor, elegance, and stability",
       price: "799 MAD",

@@ -1,24 +1,22 @@
-import { Hero } from "@/components/sections/book1/Hero"
-import { About } from "@/components/sections/book1/About"
-import { Preview } from "@/components/sections/book1/Preview"
-import { Features } from "@/components/sections/book1/Features"
-import { ReviewsAndApplications } from "@/components/sections/Reviews"
+import { Hero2 } from "@/components/sections/book2/Hero2"
+import { About2 } from "@/components/sections/book2/About2"
+import { Preview2 } from "@/components/sections/book2/Preview2"
+import { Features2 } from "@/components/sections/book2/Features2"
 import { Author } from "@/components/sections/Author"
-import { Purchase } from "@/components/sections/Purchase"
+import { Purchase2 } from "@/components/sections/book2/Purchase2"
 import { Footer } from "@/components/sections/Footer"
-
+import { ReviewsAndApplications } from "@/components/sections/book2/Reviews2"
 const Book2 = () => {
   return (
     <div className="min-h-screen bg-luxury-dark relative">
-      {/* NOTE: This is a duplicate of the first book landing page */}
-      {/* Content will be customized later with Book 2 specific information */}
-      <Hero />
-      <About />
-      <Preview />
-      <Features />
+      {/* ALCHEMY IN LAYERS Vol 1 - Book 2 Landing Page */}
+      <Hero2 />
+      <About2 />
+      <Preview2 />
+      <Features2 />
       <ReviewsAndApplications />
       <Author />
-      <Purchase />
+      <Purchase2 />
       <Footer />
     </div>
   )
