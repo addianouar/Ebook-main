@@ -18,7 +18,7 @@ const Home = () => {
       description: "10 unique cupcake creations blending unexpected flavors and refined techniques",
       price: "799 MAD",
       oldPrice: "1999 MAD",
-      features: ["10 Exclusive Recipes", "Tested by Students", "Professional Techniques", "Instant Download"]
+      features: ["10 Exclusive Recipes", "Tested by Students", "Professional Techniques", "Instant Download", "Telegrm Canal With Videos Step by Step"]
     },
     {
       id: 2,
@@ -73,7 +73,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Ebook Cards */}
+        {/* ebook Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 max-w-6xl mx-auto">
           {books.map((book, index) => (
             <div
