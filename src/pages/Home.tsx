@@ -5,8 +5,6 @@ import { Sparkles } from "lucide-react";
 import pattern from "@/assets/pattern.jpg";
 import cupcakeCover from "@/assets/cupcake.jpg";
 import ebookcover from "@/assets/ebook-cover.webp";
-import winterFallCover from "@/assets/winter-fall-course.jpg";
-import saharaCover from "@/assets/sahara-course.jpg";
 import masterclassCover from "@/assets/masterclass-amandes-vanille.jpg";
 
 const Home = () => {
@@ -76,42 +74,6 @@ const Home = () => {
         "Step-by-Step Guide"
       ],
       isWhatsApp: false
-    },
-    {
-      id: 3,
-      title: "WINTER FALL",
-      subtitle: "Online Course",
-      cover: winterFallCover,
-      route: null,
-      whatsappNumber: "+212664576477",
-      description: "Natural textures and wafer paper flower techniques",
-      price: "1800 MAD",
-      dates: "15–17 December",
-      features: [
-        "Natural Texture Techniques",
-        "Wafer Paper Flowers",
-        "Live Sessions",
-        "Lifetime Access"
-      ],
-      isWhatsApp: true
-    },
-    {
-      id: 4,
-      title: "MOROCCAN SAHARA",
-      subtitle: "Formation de Base",
-      cover: saharaCover,
-      route: null,
-      whatsappNumber: "+212664576477",
-      description:
-        "Complete cake design foundation with modern techniques",
-      price: "3200 MAD",
-      features: [
-        "Two-tier Cake",
-        "Cupcakes & Cake Pops",
-        "Macarons",
-        "Certificate Included"
-      ],
-      isWhatsApp: true
     }
   ];
 
