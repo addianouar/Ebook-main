@@ -36,10 +36,10 @@ const Home = () => {
         "Sans œufs & sans sucre",
         "Stabilité été & hiver",
         "Piping précis",
-        "Cake amandes & vanille premium"
+        "Cake amandes & vanille premium",
       ],
       isWhatsApp: true,
-      isNew: true
+      isNew: true,
     },
     {
       id: 1,
@@ -50,13 +50,8 @@ const Home = () => {
       description:
         "10 unique cupcake creations blending unexpected flavors and refined techniques",
       price: "799 MAD",
-      features: [
-        "10 Exclusive Recipes",
-        "Professional Techniques",
-        "Instant Download",
-        "Telegram Videos"
-      ],
-      isWhatsApp: false
+      features: ["10 Exclusive Recipes", "Professional Techniques", "Instant Download", "Telegram Videos"],
+      isWhatsApp: false,
     },
     {
       id: 2,
@@ -67,21 +62,14 @@ const Home = () => {
       description:
         "10 exclusive layered cake recipes ensuring flavor, elegance and stability",
       price: "799 MAD",
-      features: [
-        "10 Layer Cake Recipes",
-        "Cake Design Focus",
-        "Stable Creams",
-        "Step-by-Step Guide"
-      ],
-      isWhatsApp: false
-    }
+      features: ["10 Layer Cake Recipes", "Cake Design Focus", "Stable Creams", "Step-by-Step Guide"],
+      isWhatsApp: false,
+    },
   ];
 
   const navigateToDestination = (book: any) => {
     if (book.isWhatsApp && book.whatsappNumber) {
-      const msg = encodeURIComponent(
-        `Hello! I'm interested in the ${book.title}.`
-      );
+      const msg = encodeURIComponent(`Hello! I'm interested in the ${book.title}.`);
       window.open(
         `https://wa.me/${book.whatsappNumber.replace(/[^0-9]/g, "")}?text=${msg}`,
         "_blank"
@@ -95,10 +83,24 @@ const Home = () => {
     if (isMobile) {
       if (!flippedCards.includes(book.id)) {
         setFlippedCards([...flippedCards, book.id]);
-        return;
+      } else {
+        navigateToDestination(book);
       }
+    } else {
+      navigateToDestination(book);
     }
-    navigateToDestination(book);
+  };
+
+  const handleMouseEnter = (id: number) => {
+    if (!isMobile && !flippedCards.includes(id)) {
+      setFlippedCards([...flippedCards, id]);
+    }
+  };
+
+  const handleMouseLeave = (id: number) => {
+    if (!isMobile) {
+      setFlippedCards(flippedCards.filter((cardId) => cardId !== id));
+    }
   };
 
   const isFlipped = (id: number) => flippedCards.includes(id);
@@ -107,6 +109,7 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#4A0E1F] via-[#651C32] to-[#2E0D14] relative overflow-hidden">
       <img
         src={pattern}
+        alt=""
         className="absolute inset-0 w-full h-full object-cover opacity-5"
       />
 
@@ -119,29 +122,28 @@ const Home = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div
-                className="relative h-[700px] cursor-pointer perspective-1000 group"
+                className="relative h-[700px] cursor-pointer perspective-1000"
                 onClick={() => handleCardClick(book)}
+                onMouseEnter={() => handleMouseEnter(book.id)}
+                onMouseLeave={() => handleMouseLeave(book.id)}
               >
                 <div
-                  className={`relative w-full h-full duration-700 transform-style-3d transition-transform
-                    ${isMobile && isFlipped(book.id) ? "rotate-y-180" : ""}
-                    ${!isMobile ? "group-hover:rotate-y-180" : ""}
-                  `}
+                  className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
+                    isFlipped(book.id) ? "rotate-y-180" : ""
+                  }`}
                 >
-                  {/* FRONT */}
-                  <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden border-4 border-[#C5912C]/30">
-                    <div className="h-3/5 relative">
+                  <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden border-4 border-[#C5912C]/30 bg-[#F2EFE8] flex flex-col">
+                    <div className="h-3/5 relative overflow-hidden">
                       <img
                         src={book.cover}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt={book.title}
+                        className="w-full h-full object-cover"
                       />
-
                       {book.isNew && (
                         <div className="absolute top-4 left-4 bg-[#C5912C] text-white px-4 py-2 rounded-full font-bold text-sm animate-pulse">
                           NEW
                         </div>
                       )}
-
                       {book.dates && (
                         <div className="absolute top-4 right-4 bg-[#651C32] text-white px-4 py-2 rounded-full text-sm font-bold">
                           {book.dates}
@@ -149,43 +151,30 @@ const Home = () => {
                       )}
                     </div>
 
-                    <div className="p-8 bg-[#F2EFE8] h-2/5">
-                      <p className="text-[#C5912C] uppercase text-sm">
-                        {book.subtitle}
-                      </p>
-                      <h2 className="text-3xl font-bold text-[#651C32] mb-3">
-                        {book.title}
-                      </h2>
-                      <p className="text-[#1D3C34]/70 mb-4">
-                        {book.description}
-                      </p>
-                      <p className="text-[#C5912C] font-bold text-2xl">
-                        {book.price}
-                      </p>
-                      {book.pricePresential && (
-                        <p className="text-sm text-[#651C32]">
-                          {book.pricePresential}
-                        </p>
-                      )}
+                    <div className="p-8 flex-1 flex flex-col justify-between">
+                      <div>
+                        <p className="text-[#C5912C] uppercase text-sm">{book.subtitle}</p>
+                        <h2 className="text-3xl font-bold text-[#651C32] mb-3">{book.title}</h2>
+                        <p className="text-[#1D3C34]/70 mb-4">{book.description}</p>
+                      </div>
+                      <div>
+                        <p className="text-[#C5912C] font-bold text-2xl">{book.price}</p>
+                        {book.pricePresential && <p className="text-sm text-[#651C32]">{book.pricePresential}</p>}
+                      </div>
                     </div>
                   </div>
 
-                  {/* BACK */}
-                  <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl p-8 bg-[#651C32] text-white border-4 border-[#C5912C]">
-                    <h3 className="text-2xl font-bold mb-6">What’s Included</h3>
-
-                    {book.features.map((f: string, i: number) => (
-                      <div key={i} className="flex items-center gap-2 mb-3">
-                        <Sparkles className="text-[#C5912C]" size={18} />
-                        <span>{f}</span>
-                      </div>
-                    ))}
-
-                    {isMobile && (
-                      <p className="mt-6 text-center text-sm opacity-70">
-                        Tap again to continue
-                      </p>
-                    )}
+                  <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl p-8 bg-[#651C32] text-white border-4 border-[#C5912C] flex flex-col">
+                    <h3 className="text-2xl font-bold mb-6">What's Included</h3>
+                    <div className="flex-1">
+                      {book.features.map((f: string, i: number) => (
+                        <div key={i} className="flex items-center gap-2 mb-3">
+                          <Sparkles className="text-[#C5912C]" size={18} />
+                          <span>{f}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {isMobile && <p className="mt-6 text-center text-sm opacity-70">Tap again to continue</p>}
                   </div>
                 </div>
               </div>
