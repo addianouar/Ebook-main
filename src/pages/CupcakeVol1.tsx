@@ -4,7 +4,7 @@ import { Preview } from "@/components/sections/book1/Preview"
 import { Features } from "@/components/sections/book1/Features"
 import { ReviewsAndApplications } from "@/components/sections/Reviews"
 import { Author } from "@/components/sections/Author"
-import { Purchase } from "@/components/sections/Purchase"
+import { Purchase } from "@/components/sections/book1/Purchase"
 import { Footer } from "@/components/sections/Footer"
 
 const CupcakeVol1 = () => {
