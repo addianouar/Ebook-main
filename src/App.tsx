@@ -4,9 +4,24 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
+// Main Landing
+import MainLanding from "./pages/MainLanding";
+
+// Ebooks
+import EbooksPage from "./pages/EbooksPage";
 import CupcakeVol1 from "./pages/CupcakeVol1";
-import Book2 from "./pages/book2"; // This imports the Book2 component
+import Book2 from "./pages/book2";
+
+// Masterclasses
+import MasterclassesPage from "./pages/MasterclassesPage";
+import SweetTable2026 from "./components/sections/Masterclasses/SweetTable2026";
+import BeginnerCakeDesign from "./components/sections/Masterclasses/BeginnerCakeDesign";
+import WeddingCakeMasterclass from "./components/sections/Masterclasses/WeddingCakeMasterclass";
+import Cake3DMasterclass from "./components/sections/Masterclasses/Cake3DMasterclass";
+import PrivateMasterclass from "./components/sections/Masterclasses/PrivateMasterclass";
+
+// Legacy & 404
+import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "@/Context/languagecontext";
 
@@ -21,11 +36,25 @@ const App = () => {
           <Sonner />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />} />
-              {/* Route for first book - Cupcake Evolution */}
+              {/* Main Landing Page */}
+              <Route path="/" element={<MainLanding />} />
+              
+              {/* Ebooks Section */}
+              <Route path="/ebooks" element={<EbooksPage />} />
               <Route path="/cupcake-vol1" element={<CupcakeVol1 />} />
-              {/* Route for second book - Alchemy in Layers */}
               <Route path="/book2" element={<Book2 />} />
+              
+              {/* Masterclasses Section */}
+              <Route path="/masterclasses" element={<MasterclassesPage />} />
+              <Route path="/masterclass/sweet-table-2026" element={<SweetTable2026 />} />
+              <Route path="/masterclass/beginner-cake-design" element={<BeginnerCakeDesign />} />
+              <Route path="/masterclass/wedding-cake" element={<WeddingCakeMasterclass />} />
+              <Route path="/masterclass/cake-3d" element={<Cake3DMasterclass />} />
+              <Route path="/masterclass/private" element={<PrivateMasterclass />} />
+              
+              {/* Legacy route for backwards compatibility */}
+              <Route path="/home" element={<Home />} />
+              
               {/* Catch all route for 404 */}
               <Route path="*" element={<NotFound />} />
             </Routes>
