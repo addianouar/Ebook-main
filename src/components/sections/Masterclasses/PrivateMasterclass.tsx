@@ -144,12 +144,10 @@ En trinôme :
         duo: {
           name: "تكوين ثنائي",
           description: "تعلم مشترك لشخصين",
-          calculation: "6000 ÷ 2 + 20٪ من 6000"
         },
         trio: {
           name: "تكوين ثلاثي",
           description: "مجموعة من 3 مشاركين كحد أقصى",
-          calculation: "6000 ÷ 3 + 25٪ من 6000"
         },
         note: "يمكن قبول مشارك رابع عند الطلب بموافقة الجميع"
       },
@@ -194,9 +192,10 @@ Pour les formations à plusieurs, le tarif est calculé selon la formule suivant
 
 Le prix initial est d’abord divisé entre les participants
 
-Une majoration est ensuite ajoutée, calculée sur le prix initial (6000 dh)
+Une majoration est ensuite ajoutée, calculée sur le prix initial.
 
 Exemple de tarification
+
 Pour une masterclass au tarif de base de 6000 dh :
 
 En binôme :
