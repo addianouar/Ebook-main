@@ -24,22 +24,17 @@ const BeginnerCakeDesign = () => {
         title: "Formats Disponibles",
         individual: {
           name: "Formation Individuelle",
-          description: "Attention exclusive et personnalisée",
-          price: "À partir de 6,000 MAD"
+          description: "Attention exclusive et personnalisée"
         },
         duo: {
           name: "Formation en Binôme",
           description: "Apprentissage partagé à deux",
-          price: "4,200 MAD par personne",
-          calculation: "6000 ÷ 2 + 20% de 6000"
         },
         trio: {
           name: "Formation en Trinôme",
           description: "Groupe de 3 participants maximum",
-          price: "3,500 MAD par personne",
-          calculation: "6000 ÷ 3 + 25% de 6000"
         },
-        note: "Un quatrième participant peut être accepté sur demande avec accord de tous (même tarif qu'en trinôme)"
+        note: "Un quatrième participant peut être accepté sur demande avec accord de tous"
       },
       categories: {
         title: "Catégories Disponibles",
@@ -74,6 +69,26 @@ const BeginnerCakeDesign = () => {
           "Techniques adaptées à vos objectifs",
           "Pas de matériel personnel nécessaire"
         ]
+      },
+      tarification: {
+        title: "Tarification",
+        description: `Le tarif de base correspond à une masterclass individuelle.
+Pour les formations à plusieurs, le tarif est calculé selon la formule suivante :
+
+Le prix initial est d’abord divisé entre les participants
+
+Une majoration est ensuite ajoutée, calculée sur le prix initial (6000 dh)
+
+Exemple de tarification
+Pour une masterclass au tarif de base de 6000 dh :
+
+En binôme :
+6000 ÷ 2 + 20 % de 6000
+= 4200 dh par personne
+
+En trinôme :
+6000 ÷ 3 + 25 % de 6000
+= 3500 dh par personne`
       },
       conditions: {
         title: "Conditions de Réservation",
@@ -124,22 +139,19 @@ const BeginnerCakeDesign = () => {
         title: "الصيغ المتاحة",
         individual: {
           name: "تكوين فردي",
-          description: "اهتمام حصري ومخصص",
-          price: "ابتداءً من 6,000 درهم"
+          description: "اهتمام حصري ومخصص"
         },
         duo: {
           name: "تكوين ثنائي",
           description: "تعلم مشترك لشخصين",
-          price: "4,200 درهم للشخص",
           calculation: "6000 ÷ 2 + 20٪ من 6000"
         },
         trio: {
           name: "تكوين ثلاثي",
           description: "مجموعة من 3 مشاركين كحد أقصى",
-          price: "3,500 درهم للشخص",
           calculation: "6000 ÷ 3 + 25٪ من 6000"
         },
-        note: "يمكن قبول مشارك رابع عند الطلب بموافقة الجميع (نفس التعرفة الثلاثية)"
+        note: "يمكن قبول مشارك رابع عند الطلب بموافقة الجميع"
       },
       categories: {
         title: "الفئات المتاحة",
@@ -174,6 +186,26 @@ const BeginnerCakeDesign = () => {
           "تقنيات مكيفة حسب أهدافك",
           "لا حاجة لمعدات شخصية"
         ]
+      },
+      tarification: {
+        title: "التسعير",
+        description: `Le tarif de base correspond à une masterclass individuelle.
+Pour les formations à plusieurs, le tarif est calculé selon la formule suivante :
+
+Le prix initial est d’abord divisé entre les participants
+
+Une majoration est ensuite ajoutée, calculée sur le prix initial (6000 dh)
+
+Exemple de tarification
+Pour une masterclass au tarif de base de 6000 dh :
+
+En binôme :
+6000 ÷ 2 + 20 % de 6000
+= 4200 dh par personne
+
+En trinôme :
+6000 ÷ 3 + 25 % de 6000
+= 3500 dh par personne`
       },
       conditions: {
         title: "شروط الحجز",
@@ -308,7 +340,6 @@ const BeginnerCakeDesign = () => {
                   </div>
                   <h3 className="font-playfair text-xl font-bold text-[#651C32] mb-2">{t.formats.individual.name}</h3>
                   <p className="text-sm text-[#651C32]/70 mb-4">{t.formats.individual.description}</p>
-                  <p className="text-2xl font-bold text-[#C5912C]">{t.formats.individual.price}</p>
                 </div>
               </Card>
 
@@ -319,8 +350,6 @@ const BeginnerCakeDesign = () => {
                   </div>
                   <h3 className="font-playfair text-xl font-bold text-[#651C32] mb-2">{t.formats.duo.name}</h3>
                   <p className="text-sm text-[#651C32]/70 mb-4">{t.formats.duo.description}</p>
-                  <p className="text-2xl font-bold text-[#C5912C] mb-2">{t.formats.duo.price}</p>
-                  <p className="text-xs text-[#651C32]/60">{t.formats.duo.calculation}</p>
                 </div>
               </Card>
 
@@ -331,8 +360,6 @@ const BeginnerCakeDesign = () => {
                   </div>
                   <h3 className="font-playfair text-xl font-bold text-[#651C32] mb-2">{t.formats.trio.name}</h3>
                   <p className="text-sm text-[#651C32]/70 mb-4">{t.formats.trio.description}</p>
-                  <p className="text-2xl font-bold text-[#C5912C] mb-2">{t.formats.trio.price}</p>
-                  <p className="text-xs text-[#651C32]/60">{t.formats.trio.calculation}</p>
                 </div>
               </Card>
             </div>
@@ -406,6 +433,40 @@ const BeginnerCakeDesign = () => {
               </div>
             </Card>
           </div>
+
+          {/* Tarification Section */}
+         {/* Tarification Section */}
+<div className="max-w-6xl mx-auto mb-16">
+  <Card className="bg-gradient-to-br from-[#651C32] to-[#C5912C] p-8 lg:p-12 rounded-3xl shadow-2xl border-4 border-white animate-pulse-slow relative overflow-hidden">
+    <div className="absolute inset-0 bg-white/10 animate-pulse-gradient pointer-events-none rounded-3xl"></div>
+    <h2 className="font-playfair text-3xl lg:text-5xl font-extrabold text-white text-center mb-6 drop-shadow-lg">
+      {t.tarification.title}
+    </h2>
+    <p className="text-lg lg:text-xl font-semibold text-white/90 whitespace-pre-line leading-relaxed text-center drop-shadow-md">
+      {t.tarification.description}
+    </p>
+  </Card>
+</div>
+
+<style>{`
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  .animate-pulse-slow { animation: pulse-slow 2.5s ease-in-out infinite; }
+
+  @keyframes pulse-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-pulse-gradient {
+    background: linear-gradient(270deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+    background-size: 400% 400%;
+    animation: pulse-gradient 4s ease infinite;
+  }
+`}</style>
+
 
           {/* Conditions, Cancellation & Rules Grid */}
           <div className="max-w-6xl mx-auto mb-16 grid grid-cols-1 lg:grid-cols-3 gap-8">

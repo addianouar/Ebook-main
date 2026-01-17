@@ -5,8 +5,8 @@ import { LanguageContext } from "@/Context/languagecontext";
 import { Card } from "@/components/ui/card";
 import { LuxuryButton } from "@/components/ui/luxury-button";
 import pattern from "@/assets/pattern.jpg";
-import sweetTableFr from "@/assets/sweettable.png";
-import sweetTableAr from "@/assets/sweettable.png";
+import sweetTableFr from "@/assets/sweet table.webp";
+import sweetTableAr from "@/assets/sweet table.webp";
 import Swal from "sweetalert2";
 
 const SweetTable2026 = () => {

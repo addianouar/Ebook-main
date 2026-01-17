@@ -19,14 +19,14 @@ const MasterclassesPage = () => {
       learnMore: "En savoir plus",
       masterclasses: [
         {
-  id: 1,
-  title: "Formation Débutant en Cake Design",
-  description: "Formation en groupe, destinée aux personnes qui souhaitent acquérir des bases solides en cake design. Réalisation complète d'un gâteau à deux étages.",
-  details: ["Groupes de 6 à 10 personnes", "Formation organisée une fois par mois"],
-  icon: Users,
-  available: true,  // ✅ Now true
-  route: "/masterclass/beginner-cake-design"  // ✅ Add route
-},
+          id: 1,
+          title: "Formation Débutant en Cake Design",
+          description: "Formation en groupe, destinée aux personnes qui souhaitent acquérir des bases solides en cake design. Réalisation complète d'un gâteau à deux étages.",
+          details: ["Groupes de 6 à 10 personnes", "Formation organisée une fois par mois"],
+          icon: Users,
+          available: true,
+          route: "/masterclass/beginner-cake-design"
+        },
         {
           id: 2,
           title: "Formation Sweet Table 2026",
@@ -40,9 +40,10 @@ const MasterclassesPage = () => {
           id: 3,
           title: "Masterclass Wedding Cake",
           description: "Formation avancée dédiée aux gâteaux de mariage. Travail technique, structure, finitions haut de gamme et design élégant.",
-          details: ["Groupe limité à 6 personnes", "Formation 2 à 3 fois par an"],
+          details: ["Formation sur 4 jours", "Présentiel & En ligne", "2 sessions par an"],
           icon: Award,
-          available: false
+          available: true,
+          route: "/masterclass/wedding-cake"
         },
         {
           id: 4,
@@ -52,16 +53,15 @@ const MasterclassesPage = () => {
           icon: Award,
           available: false
         },
-      
         {
-  id: 5,
-  title: "Masterclass Privées (Sur Mesure)",
-  description: "Les masterclass privées sont entièrement personnalisées, aussi bien au niveau du contenu que du format, selon les besoins et objectifs du participant.",
-  details: ["Format 100% personnalisé", "1 à 3 participants", "Consultation gratuite"],
-  icon: Users,  // Better icon for exclusive service
-  available: true,  // ✅ Now true
-  route: "/masterclass/private"  // ✅ Add route
-}
+          id: 5,
+          title: "Masterclass Privées (Sur Mesure)",
+          description: "Les masterclass privées sont entièrement personnalisées, aussi bien au niveau du contenu que du format, selon les besoins et objectifs du participant.",
+          details: ["Format 100% personnalisé", "1 à 3 participants", "Consultation gratuite"],
+          icon: Users,
+          available: true,
+          route: "/masterclass/private"
+        }
       ]
     },
     ar: {
@@ -79,8 +79,8 @@ const MasterclassesPage = () => {
           description: "تدريب جماعي مخصص للأشخاص الذين يرغبون في اكتساب أساسيات قوية في تصميم الكيك. إنجاز كامل لكعكة من طابقين.",
           details: ["مجموعات من 6 إلى 10 أشخاص", "يتم تنظيم التدريب مرة واحدة شهرياً"],
           icon: Users,
-            available: true,  // ✅ Now true
-  route: "/masterclass/beginner-cake-design"  
+          available: true,
+          route: "/masterclass/beginner-cake-design"
         },
         {
           id: 2,
@@ -95,9 +95,10 @@ const MasterclassesPage = () => {
           id: 3,
           title: "ماستركلاس كيك الزفاف",
           description: "تدريب متقدم مخصص لكعكات الزفاف. عمل تقني، هيكل، تشطيبات راقية وتصميم أنيق.",
-          details: ["مجموعة محدودة بـ 6 أشخاص", "التدريب 2 إلى 3 مرات سنوياً"],
+          details: ["التدريب على 4 أيام", "حضوري وعبر الإنترنت", "دورتان سنوياً"],
           icon: Award,
-          available: false
+          available: true,
+          route: "/masterclass/wedding-cake"
         },
         {
           id: 4,
@@ -113,8 +114,8 @@ const MasterclassesPage = () => {
           description: "الماستركلاس الخاصة مخصصة بالكامل، سواء من حيث المحتوى أو الشكل، وفقاً لاحتياجات وأهداف المشارك.",
           details: ["تدريب فردي", "تدريب ثنائي", "تدريب ثلاثي (كحد أقصى)"],
           icon: Users,
-           available: true,  // ✅ Now true
-  route: "/masterclass/private" 
+          available: true,
+          route: "/masterclass/private"
         }
       ]
     }
