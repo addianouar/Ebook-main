@@ -5,7 +5,7 @@ import { Globe, ArrowLeft, Download } from "lucide-react";
 import pattern from "@/assets/pattern.jpg";
 
 // Placeholder imports — replace these with your actual files
-import blogPreview from "@/assets/blog-preview.png";
+import blogPreview from "@/assets/blog-preview.webp";
 import blogPdfEn from "@/assets/blog-en.pdf";
 import blogPdfAr from "@/assets/blog-ar.pdf";
 
