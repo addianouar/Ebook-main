@@ -26,5 +26,5 @@ export default defineConfig(({ mode }) => ({
     },
   },
   // <-- Add this to allow uppercase JPG imports
-  assetsInclude: ["**/*.JPG", "**/*.JPEG", "**/*.PNG", "**/*.SVG"],
+  assetsInclude: ["**/*.JPG", "**/*.JPEG", "**/*.PNG", "**/*.SVG", "**/*.pdf"],
 }));

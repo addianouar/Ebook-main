@@ -12,6 +12,9 @@ import EbooksPage from "./pages/EbooksPage";
 import CupcakeVol1 from "./pages/CupcakeVol1";
 import Book2 from "./pages/book2";
 
+// Blogs
+import BlogsPage from "./pages/BlogsPage";
+
 // Masterclasses
 import MasterclassesPage from "./pages/MasterclassesPage";
 import SweetTable2026 from "./components/sections/Masterclasses/SweetTable2026";
@@ -44,6 +47,9 @@ const App = () => {
               <Route path="/cupcake-vol1" element={<CupcakeVol1 />} />
               <Route path="/book2" element={<Book2 />} />
               
+              {/* Blogs Section */}
+              <Route path="/blogs" element={<BlogsPage />} />
+
               {/* Masterclasses Section */}
               <Route path="/masterclasses" element={<MasterclassesPage />} />
               <Route path="/masterclass/sweet-table-2026" element={<SweetTable2026 />} />
