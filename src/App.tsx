@@ -27,6 +27,7 @@ import PrivateMasterclass from "./components/sections/Masterclasses/PrivateMaste
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "@/Context/languagecontext";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +66,7 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
+          <Analytics />
         </TooltipProvider>
       </LanguageProvider>
     </QueryClientProvider>
