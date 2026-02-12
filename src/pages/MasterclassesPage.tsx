@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Globe, ArrowLeft, Clock, Users, Award, Sparkles } from "lucide-react";
 import { LanguageContext } from "@/Context/languagecontext";
 import pattern from "@/assets/pattern.jpg";
+import bluePorcelainCover from "@/assets/blue-porcelain-poster-7.webp";
 
 const MasterclassesPage = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const MasterclassesPage = () => {
           icon: Award,
           available: true,
           isNew: true,
+          coverImage: bluePorcelainCover,
           route: "/masterclass/blue-porcelain"
         },
         {
@@ -93,6 +95,7 @@ const MasterclassesPage = () => {
           icon: Award,
           available: true,
           isNew: true,
+          coverImage: bluePorcelainCover,
           route: "/masterclass/blue-porcelain"
         },
         {
@@ -190,7 +193,9 @@ const MasterclassesPage = () => {
             return (
               <div
                 key={masterclass.id}
-                className={`group relative bg-white/95 backdrop-blur-sm rounded-3xl p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 ${
+                className={`group relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border-2 overflow-hidden ${
+                  masterclass.coverImage ? 'pb-6 lg:pb-8' : 'p-6 lg:p-8'
+                } ${
                   masterclass.available
                     ? 'border-[#C5912C] hover:scale-105 cursor-pointer'
                     : 'border-[#651C32]/20'
@@ -214,49 +219,61 @@ const MasterclassesPage = () => {
                   </div>
                 )}
 
-                {/* Icon */}
-                <div className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
-                  masterclass.available 
-                    ? 'bg-[#C5912C]/20 group-hover:bg-[#C5912C]' 
-                    : 'bg-[#651C32]/10'
-                }`}>
-                  <Icon size={32} className={`${
-                    masterclass.available 
-                      ? 'text-[#651C32] group-hover:text-white' 
-                      : 'text-[#651C32]/50'
-                  } transition-colors duration-300`} />
-                </div>
-
-                {/* Content */}
-                <h3 className="font-playfair text-xl lg:text-2xl font-bold text-[#651C32] mb-4 text-center min-h-[60px]">
-                  {masterclass.title}
-                </h3>
-
-                <p className="text-[#651C32]/70 text-sm leading-relaxed mb-6 min-h-[100px]">
-                  {masterclass.description}
-                </p>
-
-                {/* Details */}
-                <div className="space-y-2 mb-6">
-                  {masterclass.details.map((detail, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <Clock size={16} className="text-[#C5912C] mt-1 flex-shrink-0" />
-                      <span className="text-[#651C32]/70 text-xs">{detail}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Button */}
-                <button
-                  disabled={!masterclass.available}
-                  className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
+                {/* Cover Image or Icon */}
+                {masterclass.coverImage ? (
+                  <div className="w-full h-52 overflow-hidden">
+                    <img
+                      src={masterclass.coverImage}
+                      alt={masterclass.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                ) : (
+                  <div className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
                     masterclass.available
-                      ? 'bg-[#651C32] text-white hover:bg-[#C5912C]'
-                      : 'bg-[#651C32]/20 text-[#651C32]/50 cursor-not-allowed'
-                  }`}
-                >
-                  {masterclass.available ? t.reserve : t.comingSoon}
-                </button>
+                      ? 'bg-[#C5912C]/20 group-hover:bg-[#C5912C]'
+                      : 'bg-[#651C32]/10'
+                  }`}>
+                    <Icon size={32} className={`${
+                      masterclass.available
+                        ? 'text-[#651C32] group-hover:text-white'
+                        : 'text-[#651C32]/50'
+                    } transition-colors duration-300`} />
+                  </div>
+                )}
+
+                <div className={masterclass.coverImage ? 'px-6 lg:px-8 pt-4' : ''}>
+                  {/* Content */}
+                  <h3 className="font-playfair text-xl lg:text-2xl font-bold text-[#651C32] mb-4 text-center min-h-[60px]">
+                    {masterclass.title}
+                  </h3>
+
+                  <p className="text-[#651C32]/70 text-sm leading-relaxed mb-6 min-h-[100px]">
+                    {masterclass.description}
+                  </p>
+
+                  {/* Details */}
+                  <div className="space-y-2 mb-6">
+                    {masterclass.details.map((detail, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <Clock size={16} className="text-[#C5912C] mt-1 flex-shrink-0" />
+                        <span className="text-[#651C32]/70 text-xs">{detail}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Button */}
+                  <button
+                    disabled={!masterclass.available}
+                    className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
+                      masterclass.available
+                        ? 'bg-[#651C32] text-white hover:bg-[#C5912C]'
+                        : 'bg-[#651C32]/20 text-[#651C32]/50 cursor-not-allowed'
+                    }`}
+                  >
+                    {masterclass.available ? t.reserve : t.comingSoon}
+                  </button>
+                </div>
               </div>
             );
           })}
