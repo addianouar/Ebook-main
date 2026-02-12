@@ -22,6 +22,7 @@ import BeginnerCakeDesign from "./components/sections/Masterclasses/BeginnerCake
 import WeddingCakeMasterclass from "./components/sections/Masterclasses/WeddingCakeMasterclass";
 import Cake3DMasterclass from "./components/sections/Masterclasses/Cake3DMasterclass";
 import PrivateMasterclass from "./components/sections/Masterclasses/PrivateMasterclass";
+import BluePorcelainMasterclass from "./components/sections/Masterclasses/BluePorcelainMasterclass";
 
 // Legacy & 404
 import Home from "./pages/Home";
@@ -57,6 +58,7 @@ const App = () => {
               <Route path="/masterclass/beginner-cake-design" element={<BeginnerCakeDesign />} />
               <Route path="/masterclass/wedding-cake" element={<WeddingCakeMasterclass />} />
               <Route path="/masterclass/cake-3d" element={<Cake3DMasterclass />} />
+              <Route path="/masterclass/blue-porcelain" element={<BluePorcelainMasterclass />} />
               <Route path="/masterclass/private" element={<PrivateMasterclass />} />
               
               {/* Legacy route for backwards compatibility */}

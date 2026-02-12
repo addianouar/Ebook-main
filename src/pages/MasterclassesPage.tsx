@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Globe, ArrowLeft, Clock, Users, Award } from "lucide-react";
+import { Globe, ArrowLeft, Clock, Users, Award, Sparkles } from "lucide-react";
 import { LanguageContext } from "@/Context/languagecontext";
 import pattern from "@/assets/pattern.jpg";
 
@@ -17,7 +17,18 @@ const MasterclassesPage = () => {
       comingSoon: "Bientôt disponible",
       reserve: "Réserver maintenant",
       learnMore: "En savoir plus",
+      newBadge: "NEW",
       masterclasses: [
+        {
+          id: 6,
+          title: "The Blue Porcelain — Masterclass",
+          description: "Wedding cake artistique multi-étages réel inspiré de la porcelaine contemporaine et de la haute couture pâtissière. Session LIVE + vidéos enregistrées, accès à vie.",
+          details: ["Du 5 au 8 Avril", "2200 DH au lieu de 3300 DH", "Places très limitées"],
+          icon: Award,
+          available: true,
+          isNew: true,
+          route: "/masterclass/blue-porcelain"
+        },
         {
           id: 1,
           title: "Formation Débutant en Cake Design",
@@ -72,7 +83,18 @@ const MasterclassesPage = () => {
       comingSoon: "قريباً",
       reserve: "احجز الآن",
       learnMore: "معرفة المزيد",
+      newBadge: "جديد",
       masterclasses: [
+        {
+          id: 6,
+          title: "The Blue Porcelain — ماستركلاس",
+          description: "كعكة زفاف فنية متعددة الطوابق حقيقية مستوحاة من الخزف المعاصر والأزياء الراقية في صناعة الحلويات. جلسة مباشرة + فيديوهات مسجلة، وصول مدى الحياة.",
+          details: ["من 5 إلى 8 أبريل", "2200 درهم بدلاً من 3300 درهم", "أماكن محدودة جداً"],
+          icon: Award,
+          available: true,
+          isNew: true,
+          route: "/masterclass/blue-porcelain"
+        },
         {
           id: 1,
           title: "تدريب المبتدئين في تصميم الكيك",
@@ -177,12 +199,20 @@ const MasterclassesPage = () => {
               >
                 {/* Status Badge */}
                 <div className={`absolute top-4 ${language === 'ar' ? 'left-4' : 'right-4'} ${
-                  masterclass.available 
-                    ? 'bg-[#C5912C] text-white' 
+                  masterclass.available
+                    ? 'bg-[#C5912C] text-white'
                     : 'bg-[#651C32]/20 text-[#651C32]'
                 } px-4 py-1 rounded-full text-xs font-semibold`}>
                   {masterclass.available ? t.available : t.comingSoon}
                 </div>
+
+                {/* NEW Badge */}
+                {masterclass.isNew && (
+                  <div className={`absolute top-4 ${language === 'ar' ? 'right-4' : 'left-4'} flex items-center gap-1 bg-[#651C32] text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse`}>
+                    <Sparkles size={12} />
+                    {t.newBadge}
+                  </div>
+                )}
 
                 {/* Icon */}
                 <div className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
