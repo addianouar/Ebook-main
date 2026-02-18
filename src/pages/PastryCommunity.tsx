@@ -111,200 +111,193 @@ const PastryCommunity = () => {
             {/* Soft overlay for text legibility — slightly stronger on mobile */}
             <div className="absolute inset-0 bg-[#F5E6E8]/35 sm:bg-[#F5E6E8]/30 z-[14]" />
 
-            {/* Center content — tighter padding on mobile */}
-            <div className="relative z-[15] flex flex-col items-center justify-center h-full px-5 sm:px-6 text-center safe-area-padding">
-              {/* Academy name */}
+            {/* Center content */}
+            <div className="relative z-[15] flex flex-col items-center justify-center h-full px-4 sm:px-6 text-center safe-area-padding">
+
+              {/* Frosted glass card */}
               <motion.div
-                className="overflow-hidden mb-2 sm:mb-4"
-                initial={{ opacity: 0 }}
-                animate={heroVisible ? { opacity: 1 } : {}}
-                transition={{ duration: 1, delay: 0.3 }}
+                className="relative px-8 sm:px-14 md:px-20 py-10 sm:py-14 md:py-16 rounded-3xl max-w-[92vw] sm:max-w-xl md:max-w-2xl"
+                style={{
+                  background: "rgba(245, 230, 232, 0.45)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  border: "1px solid rgba(101, 28, 50, 0.08)",
+                  boxShadow:
+                    "0 8px 32px rgba(101, 28, 50, 0.08), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(101,28,50,0.04)",
+                }}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={heroVisible ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.p
-                  className="font-inter font-bold text-[#651C32]/50 text-[10px] sm:text-xs md:text-sm tracking-[0.4em] sm:tracking-[0.5em] uppercase"
-                  initial={{ y: 40 }}
-                  animate={heroVisible ? { y: 0 } : {}}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.3,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  SARALOWE
-                </motion.p>
-              </motion.div>
-
-              {/* Title line 1 */}
-              <div className="overflow-hidden">
-                <motion.h1
-                  className="font-playfair text-[#651C32] text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-none drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
-                  initial={{ y: 100 }}
-                  animate={heroVisible ? { y: 0 } : {}}
-                  transition={{
-                    duration: 1,
-                    delay: 0.5,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  Pastry
-                </motion.h1>
-              </div>
-
-              {/* Title line 2 */}
-              <div className="overflow-hidden">
-                <motion.h1
-                  className="font-playfair text-[#651C32] text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold italic leading-none mt-1 drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
-                  initial={{ y: 100 }}
-                  animate={heroVisible ? { y: 0 } : {}}
-                  transition={{
-                    duration: 1,
-                    delay: 0.7,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  Academy
-                </motion.h1>
-              </div>
-
-              {/* Divider line */}
-              <motion.div
-                className="w-12 sm:w-16 h-[1px] bg-[#C5912C] my-5 sm:my-8"
-                initial={{ scaleX: 0 }}
-                animate={heroVisible ? { scaleX: 1 } : {}}
-                transition={{ duration: 0.8, delay: 1.1 }}
-              />
-
-              {/* Coming Soon — large & clear */}
-              <motion.p
-                className="font-playfair font-bold text-[#651C32] text-xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-4 sm:mb-6 drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 1, delay: 1.3 }}
-              >
-                Coming Soon
-              </motion.p>
-
-              {/* Cake-themed loading bar */}
-              <motion.div
-                className="relative w-52 sm:w-64 md:w-80 mb-8 sm:mb-12"
-                initial={{ opacity: 0 }}
-                animate={heroVisible ? { opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 1.6 }}
-              >
-                {/* Bar track */}
-                <div className="relative h-2.5 sm:h-3 rounded-full bg-[#651C32]/10 border border-[#651C32]/15 overflow-hidden">
-                  {/* Animated fill */}
-                  <motion.div
-                    className="absolute inset-y-0 left-0 rounded-full"
-                    style={{
-                      background:
-                        "linear-gradient(90deg, #C5912C, #D4A94E, #C5912C)",
-                      backgroundSize: "200% 100%",
-                    }}
-                    initial={{ width: "0%" }}
-                    animate={
-                      heroVisible
-                        ? {
-                            width: "65%",
-                            backgroundPosition: ["0% 0%", "200% 0%"],
-                          }
-                        : {}
-                    }
-                    transition={{
-                      width: {
-                        duration: 2.5,
-                        delay: 1.8,
-                        ease: [0.22, 1, 0.36, 1],
-                      },
-                      backgroundPosition: {
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "linear",
-                      },
-                    }}
-                  />
-                </div>
-
-                {/* Tiny cake icon riding the bar */}
+                {/* Academy name */}
                 <motion.div
-                  className="absolute -top-4 sm:-top-5 flex flex-col items-center"
-                  initial={{ left: "0%" }}
-                  animate={heroVisible ? { left: "65%" } : {}}
-                  transition={{
-                    duration: 2.5,
-                    delay: 1.8,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  style={{ transform: "translateX(-50%)" }}
-                >
-                  <svg
-                    width="16"
-                    height="18"
-                    viewBox="0 0 20 22"
-                    fill="none"
-                    className="sm:w-5 sm:h-[22px]"
-                  >
-                    {/* Bottom tier */}
-                    <rect
-                      x="2"
-                      y="14"
-                      width="16"
-                      height="7"
-                      rx="1.5"
-                      fill="#651C32"
-                      opacity="0.8"
-                    />
-                    {/* Top tier */}
-                    <rect
-                      x="5"
-                      y="8"
-                      width="10"
-                      height="6"
-                      rx="1.5"
-                      fill="#651C32"
-                      opacity="0.6"
-                    />
-                    {/* Cherry on top */}
-                    <circle cx="10" cy="6" r="2.5" fill="#C5912C" />
-                    {/* Gold ribbon */}
-                    <path
-                      d="M2,17 Q10,19 18,17"
-                      stroke="#C5912C"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </svg>
-                </motion.div>
-
-                {/* Baking text */}
-                <motion.p
-                  className="text-center font-inter font-bold text-[#651C32]/40 text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-2.5 sm:mt-3"
+                  className="overflow-hidden mb-2 sm:mb-4"
                   initial={{ opacity: 0 }}
                   animate={heroVisible ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 2.2 }}
+                  transition={{ duration: 1, delay: 0.3 }}
                 >
-                  Baking in progress...
-                </motion.p>
-              </motion.div>
+                  <motion.p
+                    className="font-inter font-bold text-[#651C32]/60 text-[10px] sm:text-xs md:text-sm tracking-[0.4em] sm:tracking-[0.5em] uppercase"
+                    initial={{ y: 40 }}
+                    animate={heroVisible ? { y: 0 } : {}}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.3,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    SARALOWE
+                  </motion.p>
+                </motion.div>
 
-              {/* CTA — touch-friendly size */}
-              <motion.button
-                onClick={() => setModalOpen(true)}
-                className="group relative font-inter font-bold text-[#651C32]/70 text-[11px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase hover:text-[#651C32] active:text-[#651C32] transition-colors duration-500 min-h-[44px] flex items-center justify-center"
-                initial={{ opacity: 0 }}
-                animate={heroVisible ? { opacity: 1 } : {}}
-                transition={{ duration: 1, delay: 2 }}
-              >
-                <span className="relative z-10 py-3 sm:py-4 px-1">
-                  Request early access
-                </span>
-                <motion.span
-                  className="absolute bottom-2 sm:bottom-3 left-0 right-0 h-[1px] bg-[#C5912C]/50 group-hover:bg-[#C5912C] transition-colors"
+                {/* Title line 1 */}
+                <div className="overflow-hidden">
+                  <motion.h1
+                    className="font-playfair text-[#651C32] text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-none"
+                    initial={{ y: 100 }}
+                    animate={heroVisible ? { y: 0 } : {}}
+                    transition={{
+                      duration: 1,
+                      delay: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    Pastry
+                  </motion.h1>
+                </div>
+
+                {/* Title line 2 */}
+                <div className="overflow-hidden">
+                  <motion.h1
+                    className="font-playfair text-[#651C32] text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold italic leading-none mt-1"
+                    initial={{ y: 100 }}
+                    animate={heroVisible ? { y: 0 } : {}}
+                    transition={{
+                      duration: 1,
+                      delay: 0.7,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    Academy
+                  </motion.h1>
+                </div>
+
+                {/* Divider line */}
+                <motion.div
+                  className="w-12 sm:w-16 h-[1px] bg-[#C5912C] my-5 sm:my-8 mx-auto"
                   initial={{ scaleX: 0 }}
                   animate={heroVisible ? { scaleX: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 2.3 }}
+                  transition={{ duration: 0.8, delay: 1.1 }}
                 />
-              </motion.button>
+
+                {/* Coming Soon — large & clear */}
+                <motion.p
+                  className="font-playfair font-bold text-[#651C32] text-xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-4 sm:mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={heroVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 1, delay: 1.3 }}
+                >
+                  Coming Soon
+                </motion.p>
+
+                {/* Cake-themed loading bar */}
+                <motion.div
+                  className="relative w-full max-w-[208px] sm:max-w-[256px] md:max-w-[320px] mx-auto mb-6 sm:mb-10"
+                  initial={{ opacity: 0 }}
+                  animate={heroVisible ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 1.6 }}
+                >
+                  {/* Bar track */}
+                  <div className="relative h-2.5 sm:h-3 rounded-full bg-[#651C32]/10 border border-[#651C32]/15 overflow-hidden">
+                    {/* Animated fill */}
+                    <motion.div
+                      className="absolute inset-y-0 left-0 rounded-full"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, #C5912C, #D4A94E, #C5912C)",
+                        backgroundSize: "200% 100%",
+                      }}
+                      initial={{ width: "0%" }}
+                      animate={
+                        heroVisible
+                          ? {
+                              width: "65%",
+                              backgroundPosition: ["0% 0%", "200% 0%"],
+                            }
+                          : {}
+                      }
+                      transition={{
+                        width: {
+                          duration: 2.5,
+                          delay: 1.8,
+                          ease: [0.22, 1, 0.36, 1],
+                        },
+                        backgroundPosition: {
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                      }}
+                    />
+                  </div>
+
+                  {/* Tiny cake icon riding the bar */}
+                  <motion.div
+                    className="absolute -top-4 sm:-top-5 flex flex-col items-center"
+                    initial={{ left: "0%" }}
+                    animate={heroVisible ? { left: "65%" } : {}}
+                    transition={{
+                      duration: 2.5,
+                      delay: 1.8,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{ transform: "translateX(-50%)" }}
+                  >
+                    <svg
+                      width="16"
+                      height="18"
+                      viewBox="0 0 20 22"
+                      fill="none"
+                      className="sm:w-5 sm:h-[22px]"
+                    >
+                      <rect x="2" y="14" width="16" height="7" rx="1.5" fill="#651C32" opacity="0.8" />
+                      <rect x="5" y="8" width="10" height="6" rx="1.5" fill="#651C32" opacity="0.6" />
+                      <circle cx="10" cy="6" r="2.5" fill="#C5912C" />
+                      <path d="M2,17 Q10,19 18,17" stroke="#C5912C" strokeWidth="1" fill="none" />
+                    </svg>
+                  </motion.div>
+
+                  {/* Baking text */}
+                  <motion.p
+                    className="text-center font-inter font-bold text-[#651C32]/50 text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-2.5 sm:mt-3"
+                    initial={{ opacity: 0 }}
+                    animate={heroVisible ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.6, delay: 2.2 }}
+                  >
+                    Baking in progress...
+                  </motion.p>
+                </motion.div>
+
+                {/* CTA — touch-friendly size */}
+                <motion.button
+                  onClick={() => setModalOpen(true)}
+                  className="group relative font-inter font-bold text-[#651C32]/80 text-[11px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase hover:text-[#651C32] active:text-[#651C32] transition-colors duration-500 min-h-[44px] flex items-center justify-center mx-auto"
+                  initial={{ opacity: 0 }}
+                  animate={heroVisible ? { opacity: 1 } : {}}
+                  transition={{ duration: 1, delay: 2 }}
+                >
+                  <span className="relative z-10 py-3 sm:py-4 px-1">
+                    Request early access
+                  </span>
+                  <motion.span
+                    className="absolute bottom-2 sm:bottom-3 left-0 right-0 h-[1px] bg-[#C5912C]/60 group-hover:bg-[#C5912C] transition-colors"
+                    initial={{ scaleX: 0 }}
+                    animate={heroVisible ? { scaleX: 1 } : {}}
+                    transition={{ duration: 0.6, delay: 2.3 }}
+                  />
+                </motion.button>
+              </motion.div>
+
             </div>
           </div>
 
