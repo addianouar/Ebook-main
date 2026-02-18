@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { LanguageContext } from "@/Context/languagecontext";
-import { BookOpen, GraduationCap, Globe, FileText } from "lucide-react";
+import { BookOpen, GraduationCap, Globe, FileText, Crown } from "lucide-react";
 import pattern from "@/assets/pattern.jpg";
 
 const MainLanding = () => {
@@ -18,6 +18,8 @@ const MainLanding = () => {
       masterclassDesc: "Formations complètes avec Sara Alöwe",
       blogsTitle: "BLOGS",
       blogsDesc: "Articles et conseils en pâtisserie",
+      communityTitle: "PASTRY COMMUNITY",
+      communityDesc: "Rejoignez notre communauté exclusive de pâtissiers",
       cta: "Explorer"
     },
     ar: {
@@ -29,6 +31,8 @@ const MainLanding = () => {
       masterclassDesc: "تدريبات كاملة مع سارا ألوي",
       blogsTitle: "المدونة",
       blogsDesc: "مقالات ونصائح في صناعة الحلويات",
+      communityTitle: "مجتمع الحلويات",
+      communityDesc: "انضم إلى مجتمعنا الحصري لصانعي الحلويات",
       cta: "استكشف"
     }
   };
@@ -65,7 +69,7 @@ const MainLanding = () => {
         </div>
 
         {/* Main Category Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* EBOOKS Card */}
           <div
             onClick={() => navigate('/ebooks')}
@@ -121,7 +125,7 @@ const MainLanding = () => {
           {/* BLOGS Card */}
           <div
             onClick={() => navigate('/blogs')}
-            className="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-gold transition-all duration-500 cursor-pointer hover:scale-105 border border-[#C5912C]/20 md:col-span-2 lg:col-span-1"
+            className="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-gold transition-all duration-500 cursor-pointer hover:scale-105 border border-[#C5912C]/20"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#651C32]/10 to-[#C5912C]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
 
@@ -136,6 +140,32 @@ const MainLanding = () => {
 
               <p className="text-[#651C32]/70 text-base lg:text-lg font-inter leading-relaxed">
                 {t.blogsDesc}
+              </p>
+
+              <button className="mt-6 bg-[#651C32] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#C5912C] transition-all duration-300 transform group-hover:scale-110">
+                {t.cta}
+              </button>
+            </div>
+          </div>
+
+          {/* PASTRY COMMUNITY Card */}
+          <div
+            onClick={() => navigate('/pastry-community')}
+            className="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-gold transition-all duration-500 cursor-pointer hover:scale-105 border border-[#C5912C]/20"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-[#651C32]/10 to-[#C5912C]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+            <div className="relative z-10 text-center space-y-6">
+              <div className="w-24 h-24 mx-auto bg-[#C5912C]/20 rounded-full flex items-center justify-center group-hover:bg-[#C5912C] transition-all duration-300">
+                <Crown size={48} className="text-[#651C32] group-hover:text-white transition-colors duration-300" />
+              </div>
+
+              <h2 className="font-playfair text-3xl lg:text-4xl font-bold text-[#651C32] group-hover:text-[#C5912C] transition-colors duration-300">
+                {t.communityTitle}
+              </h2>
+
+              <p className="text-[#651C32]/70 text-base lg:text-lg font-inter leading-relaxed">
+                {t.communityDesc}
               </p>
 
               <button className="mt-6 bg-[#651C32] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#C5912C] transition-all duration-300 transform group-hover:scale-110">

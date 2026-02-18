@@ -15,6 +15,9 @@ import Book2 from "./pages/book2";
 // Blogs
 import BlogsPage from "./pages/BlogsPage";
 
+// Pastry Community
+import PastryCommunity from "./pages/PastryCommunity";
+
 // Masterclasses
 import MasterclassesPage from "./pages/MasterclassesPage";
 import SweetTable2026 from "./components/sections/Masterclasses/SweetTable2026";
@@ -51,6 +54,9 @@ const App = () => {
               
               {/* Blogs Section */}
               <Route path="/blogs" element={<BlogsPage />} />
+
+              {/* Pastry Community */}
+              <Route path="/pastry-community" element={<PastryCommunity />} />
 
               {/* Masterclasses Section */}
               <Route path="/masterclasses" element={<MasterclassesPage />} />
