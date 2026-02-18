@@ -7,7 +7,6 @@ import AmbientFlour from "@/components/sections/PastryCommunity/AmbientFlour";
 import LuxuryCursor from "@/components/sections/PastryCommunity/LuxuryCursor";
 import EarlyAccessModal from "@/components/sections/PastryCommunity/EarlyAccessModal";
 
-// Replace with your actual ballroom background image
 import bgImage from "@/assets/pastry-community-bg.webp";
 
 const PastryCommunity = () => {
@@ -16,22 +15,39 @@ const PastryCommunity = () => {
   const [heroVisible, setHeroVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [mouseY, setMouseY] = useState(0);
+  const [vh, setVh] = useState(window.innerHeight);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
   const handleLoaderComplete = useCallback(() => {
     setLoading(false);
     setTimeout(() => setHeroVisible(true), 100);
   }, []);
 
-  // Parallax
+  // Fix mobile viewport height (address bar issue)
   useEffect(() => {
-    if (loading) return;
+    const updateVh = () => setVh(window.innerHeight);
+    window.addEventListener("resize", updateVh);
+    // Also handle orientation change on mobile
+    window.addEventListener("orientationchange", () => {
+      setTimeout(updateVh, 100);
+    });
+    return () => {
+      window.removeEventListener("resize", updateVh);
+    };
+  }, []);
+
+  // Parallax — desktop only
+  useEffect(() => {
+    if (loading || isTouchDevice) return;
     const handleMouse = (e: MouseEvent) => {
       setMouseY((e.clientY / window.innerHeight - 0.5) * 20);
     };
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
-  }, [loading]);
+  }, [loading, isTouchDevice]);
 
   return (
     <div ref={containerRef} className="pastry-community-page">
@@ -46,10 +62,10 @@ const PastryCommunity = () => {
           <LuxuryCursor />
           <AmbientFlour />
 
-          {/* Back Button */}
+          {/* Back Button — larger touch target on mobile */}
           <motion.button
             onClick={() => navigate("/")}
-            className="fixed top-6 left-6 z-50 bg-[#651C32]/10 backdrop-blur-sm text-[#651C32]/60 p-3 rounded-full hover:bg-[#651C32]/20 hover:text-[#651C32] transition-all duration-300 flex items-center gap-2"
+            className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 bg-[#651C32]/10 backdrop-blur-sm text-[#651C32]/60 p-3 sm:p-3 min-w-[44px] min-h-[44px] rounded-full hover:bg-[#651C32]/20 hover:text-[#651C32] active:bg-[#651C32]/25 transition-all duration-300 flex items-center justify-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
@@ -57,30 +73,33 @@ const PastryCommunity = () => {
             <ArrowLeft size={20} />
           </motion.button>
 
-          {/* Full-screen Hero */}
-          <div className="fixed inset-0 z-10 overflow-hidden">
-            {/* Background image with parallax */}
+          {/* Full-screen Hero — uses real vh for mobile */}
+          <div
+            className="fixed inset-0 z-10 overflow-hidden"
+            style={{ height: vh }}
+          >
+            {/* Background image with parallax (desktop) / static (mobile) */}
             <motion.div
               className="absolute inset-0"
-              style={{ y: mouseY }}
+              style={isTouchDevice ? {} : { y: mouseY }}
               transition={{ type: "tween", ease: "linear", duration: 0.1 }}
             >
               <div
-                className="absolute inset-[-40px] bg-cover bg-center"
+                className="absolute inset-[-20px] sm:inset-[-40px] bg-cover bg-center"
                 style={{ backgroundImage: `url(${bgImage})` }}
               />
             </motion.div>
 
-            {/* Film grain overlay */}
+            {/* Film grain overlay — hidden on mobile for performance */}
             <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none z-[12]"
+              className="absolute inset-0 opacity-[0.03] pointer-events-none z-[12] hidden sm:block"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
                 backgroundSize: "128px",
               }}
             />
 
-            {/* Vignette — soft rose edges */}
+            {/* Vignette — soft rose edges, lighter on mobile */}
             <div
               className="absolute inset-0 pointer-events-none z-[13]"
               style={{
@@ -89,23 +108,27 @@ const PastryCommunity = () => {
               }}
             />
 
-            {/* Soft overlay for text legibility — light blush tint */}
-            <div className="absolute inset-0 bg-[#F5E6E8]/30 z-[14]" />
+            {/* Soft overlay for text legibility — slightly stronger on mobile */}
+            <div className="absolute inset-0 bg-[#F5E6E8]/35 sm:bg-[#F5E6E8]/30 z-[14]" />
 
-            {/* Center content */}
-            <div className="relative z-[15] flex flex-col items-center justify-center h-full px-6 text-center">
+            {/* Center content — tighter padding on mobile */}
+            <div className="relative z-[15] flex flex-col items-center justify-center h-full px-5 sm:px-6 text-center safe-area-padding">
               {/* Academy name */}
               <motion.div
-                className="overflow-hidden mb-4"
+                className="overflow-hidden mb-2 sm:mb-4"
                 initial={{ opacity: 0 }}
                 animate={heroVisible ? { opacity: 1 } : {}}
                 transition={{ duration: 1, delay: 0.3 }}
               >
                 <motion.p
-                  className="font-inter font-bold text-[#651C32]/50 text-xs sm:text-sm tracking-[0.5em] uppercase"
+                  className="font-inter font-bold text-[#651C32]/50 text-[10px] sm:text-xs md:text-sm tracking-[0.4em] sm:tracking-[0.5em] uppercase"
                   initial={{ y: 40 }}
                   animate={heroVisible ? { y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
                   SARALOWE
                 </motion.p>
@@ -114,22 +137,30 @@ const PastryCommunity = () => {
               {/* Title line 1 */}
               <div className="overflow-hidden">
                 <motion.h1
-                  className="font-playfair text-[#651C32] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-none drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
+                  className="font-playfair text-[#651C32] text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold leading-none drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
                   initial={{ y: 100 }}
                   animate={heroVisible ? { y: 0 } : {}}
-                  transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
-                  Couture Pastry
+                  Pastry
                 </motion.h1>
               </div>
 
               {/* Title line 2 */}
               <div className="overflow-hidden">
                 <motion.h1
-                  className="font-playfair text-[#651C32] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold italic leading-none mt-1 drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
+                  className="font-playfair text-[#651C32] text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold italic leading-none mt-1 drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
                   initial={{ y: 100 }}
                   animate={heroVisible ? { y: 0 } : {}}
-                  transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.7,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
                   Academy
                 </motion.h1>
@@ -137,7 +168,7 @@ const PastryCommunity = () => {
 
               {/* Divider line */}
               <motion.div
-                className="w-16 h-[1px] bg-[#C5912C] my-8"
+                className="w-12 sm:w-16 h-[1px] bg-[#C5912C] my-5 sm:my-8"
                 initial={{ scaleX: 0 }}
                 animate={heroVisible ? { scaleX: 1 } : {}}
                 transition={{ duration: 0.8, delay: 1.1 }}
@@ -145,7 +176,7 @@ const PastryCommunity = () => {
 
               {/* Coming Soon — large & clear */}
               <motion.p
-                className="font-playfair font-bold text-[#651C32] text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] uppercase mb-6 drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
+                className="font-playfair font-bold text-[#651C32] text-xl sm:text-3xl md:text-4xl tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-4 sm:mb-6 drop-shadow-[0_2px_8px_rgba(245,230,232,0.6)]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 1, delay: 1.3 }}
@@ -155,55 +186,99 @@ const PastryCommunity = () => {
 
               {/* Cake-themed loading bar */}
               <motion.div
-                className="relative w-64 sm:w-80 mb-12"
+                className="relative w-52 sm:w-64 md:w-80 mb-8 sm:mb-12"
                 initial={{ opacity: 0 }}
                 animate={heroVisible ? { opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 1.6 }}
               >
                 {/* Bar track */}
-                <div className="relative h-3 rounded-full bg-[#651C32]/10 border border-[#651C32]/15 overflow-hidden">
+                <div className="relative h-2.5 sm:h-3 rounded-full bg-[#651C32]/10 border border-[#651C32]/15 overflow-hidden">
                   {/* Animated fill */}
                   <motion.div
                     className="absolute inset-y-0 left-0 rounded-full"
                     style={{
-                      background: "linear-gradient(90deg, #C5912C, #D4A94E, #C5912C)",
+                      background:
+                        "linear-gradient(90deg, #C5912C, #D4A94E, #C5912C)",
                       backgroundSize: "200% 100%",
                     }}
                     initial={{ width: "0%" }}
-                    animate={heroVisible ? {
-                      width: "65%",
-                      backgroundPosition: ["0% 0%", "200% 0%"],
-                    } : {}}
+                    animate={
+                      heroVisible
+                        ? {
+                            width: "65%",
+                            backgroundPosition: ["0% 0%", "200% 0%"],
+                          }
+                        : {}
+                    }
                     transition={{
-                      width: { duration: 2.5, delay: 1.8, ease: [0.22, 1, 0.36, 1] },
-                      backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" },
+                      width: {
+                        duration: 2.5,
+                        delay: 1.8,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                      backgroundPosition: {
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
                     }}
                   />
                 </div>
 
                 {/* Tiny cake icon riding the bar */}
                 <motion.div
-                  className="absolute -top-5 flex flex-col items-center"
+                  className="absolute -top-4 sm:-top-5 flex flex-col items-center"
                   initial={{ left: "0%" }}
                   animate={heroVisible ? { left: "65%" } : {}}
-                  transition={{ duration: 2.5, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 2.5,
+                    delay: 1.8,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   style={{ transform: "translateX(-50%)" }}
                 >
-                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                  <svg
+                    width="16"
+                    height="18"
+                    viewBox="0 0 20 22"
+                    fill="none"
+                    className="sm:w-5 sm:h-[22px]"
+                  >
                     {/* Bottom tier */}
-                    <rect x="2" y="14" width="16" height="7" rx="1.5" fill="#651C32" opacity="0.8" />
+                    <rect
+                      x="2"
+                      y="14"
+                      width="16"
+                      height="7"
+                      rx="1.5"
+                      fill="#651C32"
+                      opacity="0.8"
+                    />
                     {/* Top tier */}
-                    <rect x="5" y="8" width="10" height="6" rx="1.5" fill="#651C32" opacity="0.6" />
+                    <rect
+                      x="5"
+                      y="8"
+                      width="10"
+                      height="6"
+                      rx="1.5"
+                      fill="#651C32"
+                      opacity="0.6"
+                    />
                     {/* Cherry on top */}
                     <circle cx="10" cy="6" r="2.5" fill="#C5912C" />
                     {/* Gold ribbon */}
-                    <path d="M2,17 Q10,19 18,17" stroke="#C5912C" strokeWidth="1" fill="none" />
+                    <path
+                      d="M2,17 Q10,19 18,17"
+                      stroke="#C5912C"
+                      strokeWidth="1"
+                      fill="none"
+                    />
                   </svg>
                 </motion.div>
 
-                {/* Percentage text */}
+                {/* Baking text */}
                 <motion.p
-                  className="text-center font-inter font-bold text-[#651C32]/40 text-[10px] tracking-[0.3em] uppercase mt-3"
+                  className="text-center font-inter font-bold text-[#651C32]/40 text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-2.5 sm:mt-3"
                   initial={{ opacity: 0 }}
                   animate={heroVisible ? { opacity: 1 } : {}}
                   transition={{ duration: 0.6, delay: 2.2 }}
@@ -212,19 +287,19 @@ const PastryCommunity = () => {
                 </motion.p>
               </motion.div>
 
-              {/* CTA */}
+              {/* CTA — touch-friendly size */}
               <motion.button
                 onClick={() => setModalOpen(true)}
-                className="group relative font-inter font-bold text-[#651C32]/70 text-xs tracking-[0.4em] uppercase hover:text-[#651C32] transition-colors duration-500"
+                className="group relative font-inter font-bold text-[#651C32]/70 text-[11px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase hover:text-[#651C32] active:text-[#651C32] transition-colors duration-500 min-h-[44px] flex items-center justify-center"
                 initial={{ opacity: 0 }}
                 animate={heroVisible ? { opacity: 1 } : {}}
                 transition={{ duration: 1, delay: 2 }}
               >
-                <span className="relative z-10 py-4 px-1">
+                <span className="relative z-10 py-3 sm:py-4 px-1">
                   Request early access
                 </span>
                 <motion.span
-                  className="absolute bottom-3 left-0 right-0 h-[1px] bg-[#C5912C]/50 group-hover:bg-[#C5912C] transition-colors"
+                  className="absolute bottom-2 sm:bottom-3 left-0 right-0 h-[1px] bg-[#C5912C]/50 group-hover:bg-[#C5912C] transition-colors"
                   initial={{ scaleX: 0 }}
                   animate={heroVisible ? { scaleX: 1 } : {}}
                   transition={{ duration: 0.6, delay: 2.3 }}

@@ -20,21 +20,34 @@ const AmbientFlour = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const isMobile = window.innerWidth < 640;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2x for performance
+
     let width = window.innerWidth;
     let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
 
-    const count = Math.min(Math.floor((width * height) / 12000), 80);
+    // Set canvas size with devicePixelRatio for crisp rendering
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.scale(dpr, dpr);
+
+    // Fewer particles on mobile for battery life
+    const maxParticles = isMobile ? 25 : 80;
+    const count = Math.min(
+      Math.floor((width * height) / (isMobile ? 25000 : 12000)),
+      maxParticles
+    );
     const particles: Particle[] = [];
 
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 2.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.15,
-        speedY: (Math.random() - 0.5) * 0.1 - 0.05,
+        size: Math.random() * (isMobile ? 2 : 2.5) + 0.5,
+        speedX: (Math.random() - 0.5) * (isMobile ? 0.1 : 0.15),
+        speedY: (Math.random() - 0.5) * (isMobile ? 0.07 : 0.1) - 0.05,
         opacity: Math.random() * 0.15 + 0.03,
         opacityDir: Math.random() > 0.5 ? 0.0003 : -0.0003,
       });
@@ -71,8 +84,13 @@ const AmbientFlour = () => {
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+      const newDpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = width * newDpr;
+      canvas.height = height * newDpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(newDpr, newDpr);
     };
 
     window.addEventListener("resize", handleResize);

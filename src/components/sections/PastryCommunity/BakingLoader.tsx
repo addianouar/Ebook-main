@@ -25,13 +25,13 @@ const BakingLoader = ({ onComplete }: BakingLoaderProps) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[200] flex flex-col items-center justify-center"
-        style={{ background: "#F5E6E8" }}
+        className="fixed inset-0 z-[200] flex flex-col items-center justify-center px-6"
+        style={{ background: "#F5E6E8", height: "100dvh" }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
-        {/* Cake SVG */}
-        <div className="relative w-48 h-56 sm:w-56 sm:h-64">
+        {/* Cake SVG — scales down on small phones */}
+        <div className="relative w-36 h-44 sm:w-48 sm:h-56 md:w-56 md:h-64">
           <svg viewBox="0 0 200 240" className="w-full h-full">
             {/* Plate */}
             <motion.ellipse
@@ -154,7 +154,7 @@ const BakingLoader = ({ onComplete }: BakingLoaderProps) => {
         </div>
 
         {/* Progress bar */}
-        <div className="w-40 h-[1px] bg-[#651C32]/10 mt-8 overflow-hidden">
+        <div className="w-32 sm:w-40 h-[1px] bg-[#651C32]/10 mt-6 sm:mt-8 overflow-hidden">
           <motion.div
             className="h-full bg-[#651C32]/40"
             style={{ width: `${progress}%` }}
@@ -163,7 +163,7 @@ const BakingLoader = ({ onComplete }: BakingLoaderProps) => {
 
         {/* Text */}
         <motion.p
-          className="font-playfair font-bold text-[#651C32]/60 text-sm tracking-[0.3em] mt-6 uppercase"
+          className="font-playfair font-bold text-[#651C32]/60 text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.3em] mt-4 sm:mt-6 uppercase text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}

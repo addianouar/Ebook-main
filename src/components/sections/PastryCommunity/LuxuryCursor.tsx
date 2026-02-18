@@ -4,7 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const LuxuryCursor = () => {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
-  const [clicks, setClicks] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [clicks, setClicks] = useState<
+    { id: number; x: number; y: number }[]
+  >([]);
   const [visible, setVisible] = useState(false);
   const clickIdRef = useRef(0);
 
@@ -52,13 +54,17 @@ const LuxuryCursor = () => {
     };
   }, []);
 
+  // Don't render anything on touch/mobile devices
   if (!visible) return null;
 
   return (
     <>
+      {/* Only hide cursor on non-touch devices via hover media query */}
       <style>{`
-        .pastry-community-page, .pastry-community-page * {
-          cursor: none !important;
+        @media (hover: hover) and (pointer: fine) {
+          .pastry-community-page, .pastry-community-page * {
+            cursor: none !important;
+          }
         }
       `}</style>
 

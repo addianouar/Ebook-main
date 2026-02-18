@@ -145,6 +145,16 @@ h1, h2, h3, h4 {
   opacity: 0.1;
 }
 
+/* Safe area padding for iPhone notch & home bar */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.safe-area-padding {
+  padding-left: max(env(safe-area-inset-left, 0px), 1.25rem);
+  padding-right: max(env(safe-area-inset-right, 0px), 1.25rem);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 /* Responsive utilities for sliders / cards */
 @media (max-width: 768px) {
   .hero h1 { font-size: 2rem; }

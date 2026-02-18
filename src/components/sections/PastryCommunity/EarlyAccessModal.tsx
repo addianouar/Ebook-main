@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 // SETUP: Replace this URL with your deployed Google Apps Script URL
 // See instructions below the component for how to create it.
 // ---------------------------------------------------------------
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbymEiRnJF8sQXjOQ7xyO_n61eTusIgTZ2ZE6VpOBMQw8CHsseV7sZ5d__Yykb_5tPiGSA/exec";
+const GOOGLE_SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbymEiRnJF8sQXjOQ7xyO_n61eTusIgTZ2ZE6VpOBMQw8CHsseV7sZ5d__Yykb_5tPiGSA/exec";
 
 interface EarlyAccessModalProps {
   isOpen: boolean;
@@ -58,7 +59,7 @@ const EarlyAccessModal = ({ isOpen, onClose }: EarlyAccessModalProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[250] flex items-center justify-center"
+          className="fixed inset-0 z-[250] flex items-end sm:items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -73,39 +74,41 @@ const EarlyAccessModal = ({ isOpen, onClose }: EarlyAccessModalProps) => {
             exit={{ opacity: 0 }}
           />
 
-          {/* Modal */}
+          {/* Modal — slides up from bottom on mobile, centered on desktop */}
           <motion.div
-            className="relative z-10 w-full max-w-md mx-4"
-            initial={{ opacity: 0, y: 30, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.97 }}
+            className="relative z-10 w-full sm:max-w-md sm:mx-4"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="bg-[#F5E6E8] p-10 sm:p-12">
+            <div className="bg-[#F5E6E8] p-7 sm:p-10 md:p-12 rounded-t-2xl sm:rounded-none pb-safe">
               {!submitted ? (
                 <>
+                  {/* Close button — 44px min touch target */}
                   <button
                     onClick={onClose}
-                    className="absolute top-4 right-5 text-[#651C32]/40 hover:text-[#651C32] transition-colors font-light text-xl"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-5 text-[#651C32]/40 hover:text-[#651C32] active:text-[#651C32] transition-colors text-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
                   >
                     x
                   </button>
 
-                  <h3 className="font-playfair font-bold text-2xl sm:text-3xl text-[#651C32] mb-2">
+                  <h3 className="font-playfair font-bold text-xl sm:text-2xl md:text-3xl text-[#651C32] mb-1.5 sm:mb-2">
                     Reserve Your Seat
                   </h3>
-                  <p className="text-[#651C32]/40 text-sm font-inter font-bold mb-10 tracking-wide">
+                  <p className="text-[#651C32]/40 text-sm font-inter font-bold mb-7 sm:mb-10 tracking-wide">
                     Be the first to know when we launch.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                     <div>
                       <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Your name"
-                        className="w-full bg-transparent border-b border-[#651C32]/20 py-3 text-[#651C32] font-bold placeholder-[#651C32]/30 focus:outline-none focus:border-[#651C32]/50 transition-colors font-inter text-sm tracking-wide"
+                        autoComplete="name"
+                        className="w-full bg-transparent border-b border-[#651C32]/20 py-3 text-[#651C32] font-bold placeholder-[#651C32]/30 focus:outline-none focus:border-[#651C32]/50 transition-colors font-inter text-base sm:text-sm tracking-wide"
                         required
                       />
                     </div>
@@ -115,7 +118,9 @@ const EarlyAccessModal = ({ isOpen, onClose }: EarlyAccessModalProps) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Your email"
-                        className="w-full bg-transparent border-b border-[#651C32]/20 py-3 text-[#651C32] font-bold placeholder-[#651C32]/30 focus:outline-none focus:border-[#651C32]/50 transition-colors font-inter text-sm tracking-wide"
+                        autoComplete="email"
+                        inputMode="email"
+                        className="w-full bg-transparent border-b border-[#651C32]/20 py-3 text-[#651C32] font-bold placeholder-[#651C32]/30 focus:outline-none focus:border-[#651C32]/50 transition-colors font-inter text-base sm:text-sm tracking-wide"
                         required
                       />
                     </div>
@@ -127,12 +132,11 @@ const EarlyAccessModal = ({ isOpen, onClose }: EarlyAccessModalProps) => {
                     <motion.button
                       type="submit"
                       disabled={sending}
-                      className={`w-full py-4 font-inter font-bold text-sm tracking-[0.2em] uppercase transition-colors ${
+                      className={`w-full py-4 sm:py-4 font-inter font-bold text-sm tracking-[0.2em] uppercase transition-colors min-h-[48px] ${
                         sending
                           ? "bg-[#651C32]/50 text-white/60 cursor-wait"
-                          : "bg-[#651C32] text-white hover:bg-[#4a1424]"
+                          : "bg-[#651C32] text-white hover:bg-[#4a1424] active:bg-[#3a0f1a]"
                       }`}
-                      whileHover={sending ? {} : { scale: 1.01 }}
                       whileTap={sending ? {} : { scale: 0.99 }}
                     >
                       {sending ? "Sending..." : "Reserve my seat"}
@@ -141,11 +145,11 @@ const EarlyAccessModal = ({ isOpen, onClose }: EarlyAccessModalProps) => {
                 </>
               ) : (
                 <motion.div
-                  className="text-center py-8"
+                  className="text-center py-6 sm:py-8"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <p className="font-playfair font-bold text-2xl text-[#651C32] mb-3">
+                  <p className="font-playfair font-bold text-xl sm:text-2xl text-[#651C32] mb-2 sm:mb-3">
                     Thank you
                   </p>
                   <p className="text-[#651C32]/40 text-sm font-inter font-bold tracking-wide">
