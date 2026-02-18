@@ -28,15 +28,15 @@ const EarlyAccessModal = ({ isOpen, onClose }: EarlyAccessModalProps) => {
     setError(false);
 
     try {
+      const formData = new FormData();
+      formData.append("name", name.trim());
+      formData.append("email", email.trim());
+      formData.append("date", new Date().toISOString());
+
       await fetch(GOOGLE_SHEET_URL, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          date: new Date().toISOString(),
-        }),
+        body: formData,
       });
 
       setSubmitted(true);
