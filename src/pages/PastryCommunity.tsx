@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import BakingLoader from "@/components/sections/PastryCommunity/BakingLoader";
 import AmbientFlour from "@/components/sections/PastryCommunity/AmbientFlour";
 import LuxuryCursor from "@/components/sections/PastryCommunity/LuxuryCursor";
-import EarlyAccessModal from "@/components/sections/PastryCommunity/EarlyAccessModal";
+
 
 import bgImage from "@/assets/pastry-community-bg.webp";
 
@@ -13,7 +13,6 @@ const PastryCommunity = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [heroVisible, setHeroVisible] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [mouseY, setMouseY] = useState(0);
   const [vh, setVh] = useState(window.innerHeight);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -221,7 +220,7 @@ const PastryCommunity = () => {
                       animate={
                         heroVisible
                           ? {
-                              width: "65%",
+                              width: "95%",
                               backgroundPosition: ["0% 0%", "200% 0%"],
                             }
                           : {}
@@ -245,7 +244,7 @@ const PastryCommunity = () => {
                   <motion.div
                     className="absolute -top-4 sm:-top-5 flex flex-col items-center"
                     initial={{ left: "0%" }}
-                    animate={heroVisible ? { left: "65%" } : {}}
+                    animate={heroVisible ? { left: "95%" } : {}}
                     transition={{
                       duration: 2.5,
                       delay: 1.8,
@@ -268,44 +267,31 @@ const PastryCommunity = () => {
                   </motion.div>
 
                   {/* Baking text */}
-                  <motion.p
-                    className="text-center font-inter font-bold text-[#651C32]/50 text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-2.5 sm:mt-3"
+                  <motion.div
+                    className="text-center mt-2.5 sm:mt-3 flex flex-col items-center gap-1"
                     initial={{ opacity: 0 }}
                     animate={heroVisible ? { opacity: 1 } : {}}
                     transition={{ duration: 0.6, delay: 2.2 }}
                   >
-                    Baking in progress...
-                  </motion.p>
+                    <motion.p
+                      className="font-inter font-bold text-[#651C32] text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] uppercase"
+                      animate={{ opacity: [0.6, 1, 0.6] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      ✦ We are more than close ✦
+                    </motion.p>
+                    <motion.p
+                      className="font-inter text-[#651C32]/50 text-[8px] sm:text-[9px] tracking-[0.15em] uppercase"
+                    >
+                      95% ready
+                    </motion.p>
+                  </motion.div>
                 </motion.div>
-
-                {/* CTA — touch-friendly size */}
-                <motion.button
-                  onClick={() => setModalOpen(true)}
-                  className="group relative font-inter font-bold text-[#651C32]/80 text-[11px] sm:text-xs tracking-[0.3em] sm:tracking-[0.4em] uppercase hover:text-[#651C32] active:text-[#651C32] transition-colors duration-500 min-h-[44px] flex items-center justify-center mx-auto"
-                  initial={{ opacity: 0 }}
-                  animate={heroVisible ? { opacity: 1 } : {}}
-                  transition={{ duration: 1, delay: 2 }}
-                >
-                  <span className="relative z-10 py-3 sm:py-4 px-1">
-                    Request early access
-                  </span>
-                  <motion.span
-                    className="absolute bottom-2 sm:bottom-3 left-0 right-0 h-[1px] bg-[#C5912C]/60 group-hover:bg-[#C5912C] transition-colors"
-                    initial={{ scaleX: 0 }}
-                    animate={heroVisible ? { scaleX: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 2.3 }}
-                  />
-                </motion.button>
               </motion.div>
 
             </div>
           </div>
 
-          {/* Early Access Modal */}
-          <EarlyAccessModal
-            isOpen={modalOpen}
-            onClose={() => setModalOpen(false)}
-          />
         </>
       )}
     </div>

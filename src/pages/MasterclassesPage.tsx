@@ -5,6 +5,7 @@ import { LanguageContext } from "@/Context/languagecontext";
 import pattern from "@/assets/pattern.jpg";
 import bluePorcelainCover from "@/assets/blue-porcelain-poster-7.webp";
 
+
 const MasterclassesPage = () => {
   const navigate = useNavigate();
   const { language, toggleLanguage } = useContext(LanguageContext);
@@ -24,7 +25,7 @@ const MasterclassesPage = () => {
           id: 6,
           title: "The Blue Porcelain — Masterclass",
           description: "Wedding cake artistique multi-étages réel inspiré de la porcelaine contemporaine et de la haute couture pâtissière. Session LIVE + vidéos enregistrées, accès à vie.",
-          details: ["Du 5 au 8 Avril", "2200 DH au lieu de 3300 DH", "Places très limitées"],
+          details: ["✓ Terminé", "2200 DH au lieu de 3300 DH", "Places très limitées"],
           icon: Award,
           available: true,
           isNew: true,
@@ -35,7 +36,7 @@ const MasterclassesPage = () => {
           id: 1,
           title: "Formation Débutant en Cake Design",
           description: "Formation en groupe, destinée aux personnes qui souhaitent acquérir des bases solides en cake design. Réalisation complète d'un gâteau à deux étages.",
-          details: ["Groupes de 6 à 10 personnes", "Formation organisée une fois par mois"],
+          details: ["Groupes de 6 à 10 personnes", "Formation organisée une fois par mois", "Prochaine séance : 20 Avril"],
           icon: Users,
           available: true,
           route: "/masterclass/beginner-cake-design"
@@ -91,7 +92,7 @@ const MasterclassesPage = () => {
           id: 6,
           title: "The Blue Porcelain — ماستركلاس",
           description: "كعكة زفاف فنية متعددة الطوابق حقيقية مستوحاة من الخزف المعاصر والأزياء الراقية في صناعة الحلويات. جلسة مباشرة + فيديوهات مسجلة، وصول مدى الحياة.",
-          details: ["من 5 إلى 8 أبريل", "2200 درهم بدلاً من 3300 درهم", "أماكن محدودة جداً"],
+          details: ["✓ منتهى", "2200 درهم بدلاً من 3300 درهم", "أماكن محدودة جداً"],
           icon: Award,
           available: true,
           isNew: true,
@@ -102,7 +103,7 @@ const MasterclassesPage = () => {
           id: 1,
           title: "تدريب المبتدئين في تصميم الكيك",
           description: "تدريب جماعي مخصص للأشخاص الذين يرغبون في اكتساب أساسيات قوية في تصميم الكيك. إنجاز كامل لكعكة من طابقين.",
-          details: ["مجموعات من 6 إلى 10 أشخاص", "يتم تنظيم التدريب مرة واحدة شهرياً"],
+          details: ["مجموعات من 6 إلى 10 أشخاص", "يتم تنظيم التدريب مرة واحدة شهرياً", "الجلسة القادمة: 20 أبريل"],
           icon: Users,
           available: true,
           route: "/masterclass/beginner-cake-design"
