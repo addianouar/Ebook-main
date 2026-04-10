@@ -27,8 +27,9 @@ const BeginnerCakeDesign = () => {
           duration: "4 jours",
           schedule: "11h - 15h",
           dates: [
-            { date: "9 au 12 février", status: "almost" },
-            { date: "24 au 27 mars", status: "available" },
+            { date: "9 au 12 février", status: "passed" },
+            { date: "24 au 27 mars", status: "passed" },
+            { date: "20 au 23 avril", status: "almost" },
             { date: "6 au 9 juillet", status: "available" },
             { date: "24 au 27 août", status: "available" }
           ]
@@ -38,14 +39,15 @@ const BeginnerCakeDesign = () => {
           duration: "3 jours",
           schedule: "11h - 17h (40 min pause)",
           dates: [
-            { date: "23 au 25 janvier", status: "full" },
-            { date: "20 au 22 février", status: "almost" }
+            { date: "23 au 25 janvier", status: "passed" },
+            { date: "20 au 22 février", status: "passed" }
           ]
         },
         labels: {
           available: "Places disponibles",
           almost: "Presque complet",
-          full: "COMPLET"
+          full: "COMPLET",
+          passed: "Formation terminée"
         }
       },
       pricing: {
@@ -179,8 +181,9 @@ const BeginnerCakeDesign = () => {
           duration: "4 أيام",
           schedule: "11:00 - 15:00",
           dates: [
-            { date: "9 إلى 12 فبراير", status: "almost" },
-            { date: "24 إلى 27 مارس", status: "available" },
+            { date: "9 إلى 12 فبراير", status: "passed" },
+            { date: "24 إلى 27 مارس", status: "passed" },
+            { date: "20 إلى 23 أبريل", status: "almost" },
             { date: "6 إلى 9 يوليو", status: "available" },
             { date: "24 إلى 27 أغسطس", status: "available" }
           ]
@@ -190,14 +193,15 @@ const BeginnerCakeDesign = () => {
           duration: "3 أيام",
           schedule: "11:00 - 17:00 (استراحة 40 دقيقة)",
           dates: [
-            { date: "23 إلى 25 يناير", status: "full" },
-            { date: "20 إلى 22 فبراير", status: "almost" }
+            { date: "23 إلى 25 يناير", status: "passed" },
+            { date: "20 إلى 22 فبراير", status: "passed" }
           ]
         },
         labels: {
           available: "أماكن متاحة",
           almost: "شبه مكتمل",
-          full: "مكتمل"
+          full: "مكتمل",
+          passed: "تمت الدورة"
         }
       },
       pricing: {
@@ -334,6 +338,7 @@ const BeginnerCakeDesign = () => {
       case 'full': return 'bg-red-500 text-white';
       case 'almost': return 'bg-orange-500 text-white';
       case 'available': return 'bg-green-500 text-white';
+      case 'passed': return 'bg-gray-500 text-white';
       default: return 'bg-gray-500 text-white';
     }
   };
@@ -343,6 +348,7 @@ const BeginnerCakeDesign = () => {
       case 'full': return t.locations.labels.full;
       case 'almost': return t.locations.labels.almost;
       case 'available': return t.locations.labels.available;
+      case 'passed': return t.locations.labels.passed;
       default: return '';
     }
   };
